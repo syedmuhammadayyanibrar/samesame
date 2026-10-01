@@ -1,0 +1,45 @@
+scenario_id: test_10
+title: Enterprise sales and engineering domain overlap
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Olivia Wilde
+  canonical_email: olivia.wilde@enterprise-ai.co
+  canonical_phone: '+14155554001'
+- identity_id: user_2
+  canonical_name: Ethan Hunt
+  canonical_email: ethan.hunt@enterprise-ai.co
+  canonical_phone: '+14155554002'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T16:00:00Z'
+  channel: email
+  sender_email: olivia.wilde@enterprise-ai.co
+  sender_phone: null
+  display_name: Olivia Wilde
+  text: Enterprise licensing contract renewal and customer success review.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T16:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+14155554001'
+  display_name: null
+  text: 'Olivia Wilde: customer signed enterprise MSA agreement.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T17:00:00Z'
+  channel: email
+  sender_email: ethan.hunt@enterprise-ai.co
+  sender_phone: null
+  display_name: Ethan Hunt
+  text: Technical architecture specification for on-premise GPU cluster deployment.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-02T17:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+14155554002'
+  display_name: null
+  text: Ethan Hunt calling to discuss GPU driver compatibility with customer cluster.
+  true_identity_id: user_2

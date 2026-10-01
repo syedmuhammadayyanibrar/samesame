@@ -1,0 +1,45 @@
+scenario_id: dev_17
+title: Meeting room speakerphone repairs
+ambiguity_type: reused_phone
+true_identities:
+- identity_id: user_1
+  canonical_name: Dave Miller
+  canonical_email: dave.m@enterprise.com
+  canonical_phone: '+18005551700'
+- identity_id: user_2
+  canonical_name: Jessica Alba
+  canonical_email: jessica.a@enterprise.com
+  canonical_phone: '+18005551700'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T10:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+18005551700'
+  display_name: null
+  text: Dave Miller here from conference room A, audio speaker is buzzing.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T10:15:00Z'
+  channel: email
+  sender_email: dave.m@enterprise.com
+  sender_phone: null
+  display_name: Dave Miller
+  text: Audio ticket for Conf Room A speaker buzzing issue.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T11:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+18005551700'
+  display_name: null
+  text: Jessica Alba from conference room A, video projector will not turn on.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T11:20:00Z'
+  channel: email
+  sender_email: jessica.a@enterprise.com
+  sender_phone: null
+  display_name: Jessica Alba
+  text: Projector HDMI cable replacement needed in Room A.
+  true_identity_id: user_2

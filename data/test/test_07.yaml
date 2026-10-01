@@ -1,0 +1,34 @@
+scenario_id: test_07
+title: Emergency locksmith neighbour phone
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: Brian O'Connor
+  canonical_email: brian.oconnor@fasttrack.com
+  canonical_phone: '+13105553701'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T19:00:00Z'
+  channel: email
+  sender_email: brian.oconnor@fasttrack.com
+  sender_phone: null
+  display_name: Brian O'Connor
+  text: Key duplication and deadbolt lock repair request for unit 12.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T19:15:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+13105553701'
+  display_name: null
+  text: Brian O'Connor here, locked out of unit 12, need technician asap.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T19:40:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: This is Brian O'Connor calling from neighbour phone, technician hasn't arrived
+    yet.
+  true_identity_id: user_1

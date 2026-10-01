@@ -1,0 +1,45 @@
+scenario_id: test_06
+title: High school faculty domain overlap
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Arthur Vance
+  canonical_email: a.vance@lincoln-hs.edu
+  canonical_phone: '+14025553601'
+- identity_id: user_2
+  canonical_name: Elena Gomez
+  canonical_email: e.gomez@lincoln-hs.edu
+  canonical_phone: '+14025553602'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T08:00:00Z'
+  channel: email
+  sender_email: a.vance@lincoln-hs.edu
+  sender_phone: null
+  display_name: Arthur Vance
+  text: Science lab safety goggles and chemical storage cabinet order.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T08:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+14025553601'
+  display_name: null
+  text: 'Arthur Vance: chemistry department shipment arriving at dock B.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T09:00:00Z'
+  channel: email
+  sender_email: e.gomez@lincoln-hs.edu
+  sender_phone: null
+  display_name: Elena Gomez
+  text: Calculus textbooks and graphing calculator purchase requisition.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-02T09:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+14025553602'
+  display_name: null
+  text: Elena Gomez calling to check status on graphing calculator licenses.
+  true_identity_id: user_2

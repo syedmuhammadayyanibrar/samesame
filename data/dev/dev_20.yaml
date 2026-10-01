@@ -1,0 +1,33 @@
+scenario_id: dev_20
+title: Subscription cancellation flow
+ambiguity_type: none
+true_identities:
+- identity_id: user_1
+  canonical_name: Maya Lin
+  canonical_email: maya.lin@designer.co
+  canonical_phone: '+15035552001'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T11:00:00Z'
+  channel: email
+  sender_email: maya.lin@designer.co
+  sender_phone: null
+  display_name: Maya Lin
+  text: Requesting cancellation of Pro plan annual subscription.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T11:10:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+15035552001'
+  display_name: null
+  text: 'Maya Lin: 2FA security code 489211 to confirm account cancellation.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T11:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+15035552001'
+  display_name: null
+  text: Maya Lin here, just verifying subscription cancellation was processed.
+  true_identity_id: user_1

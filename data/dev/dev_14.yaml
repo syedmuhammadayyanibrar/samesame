@@ -1,0 +1,45 @@
+scenario_id: dev_14
+title: Hospital staff cross department emails
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Emily Watson
+  canonical_email: e.watson@metrohealth.org
+  canonical_phone: '+13125551401'
+- identity_id: user_2
+  canonical_name: Robert Chen
+  canonical_email: r.chen@metrohealth.org
+  canonical_phone: '+13125551402'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T08:00:00Z'
+  channel: email
+  sender_email: e.watson@metrohealth.org
+  sender_phone: null
+  display_name: Emily Watson
+  text: Cardiology lab schedule for Friday catheterization clinic.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T08:15:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+13125551401'
+  display_name: null
+  text: 'Dr Watson: lab specimens dispatched to cardiology pathology.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T09:00:00Z'
+  channel: email
+  sender_email: r.chen@metrohealth.org
+  sender_phone: null
+  display_name: Robert Chen
+  text: ICU telemetry bed census update for surgical wards.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T09:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+13125551402'
+  display_name: null
+  text: Nurse Chen calling with telemetry ICU bed requests for neurology.
+  true_identity_id: user_2

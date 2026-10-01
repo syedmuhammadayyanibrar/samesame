@@ -1,0 +1,33 @@
+scenario_id: dev_12
+title: Airline flight seat change
+ambiguity_type: none
+true_identities:
+- identity_id: user_1
+  canonical_name: Liam Becker
+  canonical_email: liam.becker@berlin-tech.de
+  canonical_phone: '+12125551201'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T06:00:00Z'
+  channel: email
+  sender_email: liam.becker@berlin-tech.de
+  sender_phone: null
+  display_name: Liam Becker
+  text: Requesting seat change on flight LH404 to aisle seat.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T06:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+12125551201'
+  display_name: null
+  text: Liam Becker here, confirming aisle seat request for flight LH404.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T06:40:00Z'
+  channel: email
+  sender_email: liam.becker@berlin-tech.de
+  sender_phone: null
+  display_name: Liam Becker
+  text: Can I also add an extra checked bag to flight LH404?
+  true_identity_id: user_1

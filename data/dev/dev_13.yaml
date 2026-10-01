@@ -1,0 +1,45 @@
+scenario_id: dev_13
+title: Parent and teenager clinic billing
+ambiguity_type: reused_phone
+true_identities:
+- identity_id: user_1
+  canonical_name: Laura Hernandez
+  canonical_email: laura.h@miami.edu
+  canonical_phone: '+13055551300'
+- identity_id: user_2
+  canonical_name: Kevin Hernandez
+  canonical_email: null
+  canonical_phone: '+13055551300'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T11:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+13055551300'
+  display_name: null
+  text: Hi this is Laura, need to pay dental copay for Kevin.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T11:20:00Z'
+  channel: email
+  sender_email: laura.h@miami.edu
+  sender_phone: null
+  display_name: Laura Hernandez
+  text: Receipt needed for Kevin dental cleaning insurance claim.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T14:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+13055551300'
+  display_name: null
+  text: Hey it is Kevin Hernandez, can I move my orthodontic bracket appointment?
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T14:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+13055551300'
+  display_name: null
+  text: Kevin calling, checking if 4pm Tuesday works for my braces adjustment.
+  true_identity_id: user_2

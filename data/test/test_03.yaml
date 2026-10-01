@@ -1,0 +1,33 @@
+scenario_id: test_03
+title: Guitar repair shop walk in voicemail
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: George Harrison
+  canonical_email: george.h@vintageguitars.com
+  canonical_phone: '+16155553301'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T13:00:00Z'
+  channel: email
+  sender_email: george.h@vintageguitars.com
+  sender_phone: null
+  display_name: George Harrison
+  text: Inquiry regarding fret leveling on 1968 Stratocaster neck.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T13:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+16155553301'
+  display_name: null
+  text: 'George Harrison: dropped off the guitar at front desk this morning.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T14:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: Hi this is George Harrison checking if the Stratocaster truss rod was adjusted.
+  true_identity_id: user_1

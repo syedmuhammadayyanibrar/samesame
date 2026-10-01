@@ -1,0 +1,46 @@
+scenario_id: dev_05
+title: Recycled VOIP tenant conflict
+ambiguity_type: reused_phone
+true_identities:
+- identity_id: user_1
+  canonical_name: Marcus Vance
+  canonical_email: marcus.v@protonmail.com
+  canonical_phone: '+13125550500'
+- identity_id: user_2
+  canonical_name: Chloe Higgins
+  canonical_email: chloe.higgins@gmail.com
+  canonical_phone: '+13125550500'
+messages:
+- message_id: m1
+  timestamp: '2026-09-01T10:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+13125550500'
+  display_name: null
+  text: Marcus Vance here, checking if my apartment security deposit was mailed.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-09-01T10:15:00Z'
+  channel: email
+  sender_email: marcus.v@protonmail.com
+  sender_phone: null
+  display_name: Marcus Vance
+  text: Following up on lease refund deposit.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T11:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+13125550500'
+  display_name: null
+  text: Hi this is Chloe Higgins, I just got this new number and I want to set up
+    internet service.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T11:15:00Z'
+  channel: email
+  sender_email: chloe.higgins@gmail.com
+  sender_phone: null
+  display_name: Chloe Higgins
+  text: Internet setup request for apartment 4B.
+  true_identity_id: user_2

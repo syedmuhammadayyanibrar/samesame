@@ -1,0 +1,46 @@
+scenario_id: dev_03
+title: Anonymous voice clinic check
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: Johnathan Doe
+  canonical_email: j.doe92@outlook.com
+  canonical_phone: '+16175550301'
+- identity_id: user_2
+  canonical_name: John Doe
+  canonical_email: john.doe.md@hospital.org
+  canonical_phone: null
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T08:00:00Z'
+  channel: email
+  sender_email: j.doe92@outlook.com
+  display_name: Johnathan Doe
+  sender_phone: null
+  text: Need prescription refill for Lipitor medication.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T08:15:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+16175550301'
+  display_name: null
+  text: This is Johnathan Doe, checking if refill is approved.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T09:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: Hello, this is John Doe calling to inquire about pediatric clinic open hours
+    tomorrow.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T09:30:00Z'
+  channel: email
+  sender_email: john.doe.md@hospital.org
+  display_name: John Doe
+  sender_phone: null
+  text: Checking on pediatric facility availability schedule.
+  true_identity_id: user_2

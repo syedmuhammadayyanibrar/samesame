@@ -1,0 +1,45 @@
+scenario_id: dev_02
+title: Corporate domain overlap
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Alice Vance
+  canonical_email: alice.vance@acme-logistics.com
+  canonical_phone: '+14155550201'
+- identity_id: user_2
+  canonical_name: Bob Vance
+  canonical_email: bob.vance@acme-logistics.com
+  canonical_phone: '+14155550202'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T09:00:00Z'
+  channel: email
+  sender_email: alice.vance@acme-logistics.com
+  sender_phone: null
+  display_name: Alice Vance
+  text: Inquiring about enterprise fleet pricing for Q4 logistics.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T09:30:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+14155550201'
+  display_name: null
+  text: Hi, Alice from Acme here regarding the Q4 fleet proposal.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T10:00:00Z'
+  channel: email
+  sender_email: bob.vance@acme-logistics.com
+  sender_phone: null
+  display_name: Bob Vance
+  text: Need login access to warehouse management dashboard.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T10:20:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+14155550202'
+  display_name: null
+  text: This is Bob Vance from Acme calling to verify warehouse credentials.
+  true_identity_id: user_2

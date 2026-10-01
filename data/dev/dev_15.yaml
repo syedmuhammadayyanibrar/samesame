@@ -1,0 +1,33 @@
+scenario_id: dev_15
+title: Conference registration walk in
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: David Ross
+  canonical_email: david.ross@summit.org
+  canonical_phone: '+16195551501'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T07:30:00Z'
+  channel: email
+  sender_email: david.ross@summit.org
+  sender_phone: null
+  display_name: David Ross
+  text: Badge registration for AI developer summit keynote access.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T08:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: This is David Ross, checking if keynote badge is ready at will call counter.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T08:20:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+16195551501'
+  display_name: null
+  text: David Ross here at check-in counter A regarding developer badge.
+  true_identity_id: user_1

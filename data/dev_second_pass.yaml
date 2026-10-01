@@ -1,0 +1,47 @@
+dev_01:
+  m1: user_1
+  m2: user_2
+  m3: user_1
+  m4: user_2
+dev_02:
+  m1: user_1
+  m2: user_1
+  m3: user_2
+  m4: user_2
+dev_03:
+  m1: user_1
+  m2: user_1
+  m3: user_1
+  m4: user_2
+dev_04:
+  m1: user_1
+  m2: user_1
+  m3: user_1
+dev_05:
+  m1: user_1
+  m2: user_1
+  m3: user_2
+  m4: user_2
+dev_06:
+  m1: user_1
+  m2: user_1
+  m3: user_2
+  m4: user_2
+dev_07:
+  m1: user_1
+  m2: user_1
+  m3: user_1
+dev_08:
+  m1: user_1
+  m2: user_1
+  m3: user_1
+dev_09:
+  m1: user_1
+  m2: user_1
+  m3: user_2
+  m4: user_2
+dev_10:
+  m1: user_1
+  m2: user_1
+  m3: user_2
+  m4: user_2

@@ -1,0 +1,34 @@
+scenario_id: dev_07
+title: Hotel lobby speakerphone checkin
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: Michael Chang
+  canonical_email: michael.chang@apex.com
+  canonical_phone: '+14085550701'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T15:00:00Z'
+  channel: email
+  sender_email: michael.chang@apex.com
+  sender_phone: null
+  display_name: Michael Chang
+  text: Booking conference room B for tomorrow afternoon board meeting.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T15:15:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+14085550701'
+  display_name: null
+  text: Michael Chang here, need four extra chairs for conference room B.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T15:45:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: Hi this is Michael Chang calling from reception desk phone. Could you bring
+    HDMI adapters to room B?
+  true_identity_id: user_1

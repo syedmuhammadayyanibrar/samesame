@@ -1,0 +1,45 @@
+scenario_id: dev_18
+title: Corporate accounting aliases
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Vertex Billing
+  canonical_email: billing@vertex.com
+  canonical_phone: '+16175551801'
+- identity_id: user_2
+  canonical_name: Vertex Tax Team
+  canonical_email: tax@vertex.com
+  canonical_phone: '+16175551802'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T09:00:00Z'
+  channel: email
+  sender_email: billing@vertex.com
+  sender_phone: null
+  display_name: Vertex Billing
+  text: Invoice 9012 for software licensing renewal is overdue.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T09:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+16175551801'
+  display_name: null
+  text: 'Vertex accounts receivable: payment received for invoice 9012.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T10:00:00Z'
+  channel: email
+  sender_email: tax@vertex.com
+  sender_phone: null
+  display_name: Vertex Tax Team
+  text: W9 tax exemption form requested for vendor onboarding.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T10:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+16175551802'
+  display_name: null
+  text: Vertex tax compliance department calling regarding 1099 form verification.
+  true_identity_id: user_2

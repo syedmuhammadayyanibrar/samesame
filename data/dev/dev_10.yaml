@@ -1,0 +1,45 @@
+scenario_id: dev_10
+title: Startup founders domain overlap
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Rachel Green
+  canonical_email: ceo@nexus.io
+  canonical_phone: '+16505551001'
+- identity_id: user_2
+  canonical_name: Devon Patel
+  canonical_email: cto@nexus.io
+  canonical_phone: '+16505551002'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T16:00:00Z'
+  channel: email
+  sender_email: ceo@nexus.io
+  sender_phone: null
+  display_name: Rachel Green
+  text: Reviewing cloud vendor billing contracts and legal retainer invoices.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T16:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+16505551001'
+  display_name: null
+  text: Rachel Green from Nexus, sending over signed legal retainer.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T16:40:00Z'
+  channel: email
+  sender_email: cto@nexus.io
+  sender_phone: null
+  display_name: Devon Patel
+  text: Kubernetes cluster security audit results and vulnerability logs.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T17:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+16505551002'
+  display_name: null
+  text: Devon Patel here, urgent server vulnerability patch needed on worker nodes.
+  true_identity_id: user_2

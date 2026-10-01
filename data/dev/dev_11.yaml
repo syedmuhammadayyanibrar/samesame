@@ -1,0 +1,34 @@
+scenario_id: dev_11
+title: Marketing voice transcript follow up
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: Sarah Connor
+  canonical_email: sarah.connor@cyber.org
+  canonical_phone: '+17025551101'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T13:00:00Z'
+  channel: email
+  sender_email: sarah.connor@cyber.org
+  sender_phone: null
+  display_name: Sarah Connor
+  text: Q3 product marketing campaign review for upcoming product rollout.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T13:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+17025551101'
+  display_name: null
+  text: 'Sarah Connor: campaign draft uploaded to shared folder.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T13:50:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: Hey this is Sarah Connor from marketing, just checking if you saw my email
+    about the Q3 campaign.
+  true_identity_id: user_1

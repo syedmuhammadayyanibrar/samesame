@@ -1,0 +1,45 @@
+scenario_id: test_02
+title: Law firm partner domain overlap
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Henry Adams
+  canonical_email: henry.adams@lexlegal.com
+  canonical_phone: '+12125553201'
+- identity_id: user_2
+  canonical_name: Clara Oswald
+  canonical_email: clara.oswald@lexlegal.com
+  canonical_phone: '+12125553202'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T10:00:00Z'
+  channel: email
+  sender_email: henry.adams@lexlegal.com
+  sender_phone: null
+  display_name: Henry Adams
+  text: Deposition schedule for antitrust litigation case 774.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T10:15:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+12125553201'
+  display_name: null
+  text: 'Henry Adams: deposition transcripts uploaded to document vault.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T11:00:00Z'
+  channel: email
+  sender_email: clara.oswald@lexlegal.com
+  sender_phone: null
+  display_name: Clara Oswald
+  text: Patent licensing agreement draft for robotics client.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-02T11:20:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+12125553202'
+  display_name: null
+  text: Clara Oswald calling to verify patent filing deadline with USPTO.
+  true_identity_id: user_2

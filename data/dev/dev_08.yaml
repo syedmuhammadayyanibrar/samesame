@@ -1,0 +1,33 @@
+scenario_id: dev_08
+title: Clean solar equipment order
+ambiguity_type: none
+true_identities:
+- identity_id: user_1
+  canonical_name: James Wright
+  canonical_email: j.wright@gmail.com
+  canonical_phone: '+13035550801'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T11:00:00Z'
+  channel: email
+  sender_email: j.wright@gmail.com
+  sender_phone: null
+  display_name: James Wright
+  text: Order confirmation for solar battery SB4401 shipment.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T11:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+13035550801'
+  display_name: null
+  text: 'James Wright: is expedited shipping available for battery SB4401?'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T11:40:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+13035550801'
+  display_name: null
+  text: James Wright calling to confirm solar battery dispatch date.
+  true_identity_id: user_1

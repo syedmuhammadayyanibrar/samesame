@@ -1,0 +1,46 @@
+scenario_id: test_01
+title: Elderly patient and caregiver landline
+ambiguity_type: reused_phone
+true_identities:
+- identity_id: user_1
+  canonical_name: Frank Evans
+  canonical_email: frank.evans88@gmail.com
+  canonical_phone: '+18185553001'
+- identity_id: user_2
+  canonical_name: Nancy Cole
+  canonical_email: nancy.caregiver@agency.org
+  canonical_phone: '+18185553001'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T08:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+18185553001'
+  display_name: null
+  text: Frank Evans here, need walker delivery confirmation.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T08:15:00Z'
+  channel: email
+  sender_email: frank.evans88@gmail.com
+  sender_phone: null
+  display_name: Frank Evans
+  text: Medical equipment prescription for walker attached.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T09:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+18185553001'
+  display_name: null
+  text: Hello this is Nancy Cole, caregiver for Frank Evans, calling about medication
+    delivery times.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-02T09:20:00Z'
+  channel: email
+  sender_email: nancy.caregiver@agency.org
+  sender_phone: null
+  display_name: Nancy Cole
+  text: Caregiver authorization form for Frank Evans medical records.
+  true_identity_id: user_2

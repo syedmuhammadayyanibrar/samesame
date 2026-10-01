@@ -1,0 +1,33 @@
+scenario_id: test_04
+title: Clean apparel customer exchange
+ambiguity_type: none
+true_identities:
+- identity_id: user_1
+  canonical_name: Samantha Brooks
+  canonical_email: samantha.brooks@gmail.com
+  canonical_phone: '+12065553401'
+messages:
+- message_id: m1
+  timestamp: '2026-10-02T09:00:00Z'
+  channel: email
+  sender_email: samantha.brooks@gmail.com
+  sender_phone: null
+  display_name: Samantha Brooks
+  text: Exchange request for winter wool parka from size medium to large.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-02T09:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+12065553401'
+  display_name: null
+  text: 'Samantha Brooks: return label generated for parka exchange.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-02T09:40:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+12065553401'
+  display_name: null
+  text: Samantha Brooks calling to verify the replacement parka has shipped.
+  true_identity_id: user_1

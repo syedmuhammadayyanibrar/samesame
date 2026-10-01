@@ -1,0 +1,45 @@
+scenario_id: dev_01
+title: Family plan phone reuse
+ambiguity_type: reused_phone
+true_identities:
+- identity_id: user_1
+  canonical_name: Mark Miller
+  canonical_email: mark.miller@gmail.com
+  canonical_phone: '+15550100'
+- identity_id: user_2
+  canonical_name: Sarah Miller
+  canonical_email: null
+  canonical_phone: '+15550100'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T10:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+15550100'
+  display_name: null
+  text: Hi, I would like to check status on order 8821. Thanks, Mark.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T10:15:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+15550100'
+  display_name: null
+  text: Hello, this is Sarah. I am calling about my husband Mark order 8821.
+  true_identity_id: user_2
+- message_id: m3
+  timestamp: '2026-10-01T10:30:00Z'
+  channel: email
+  sender_email: mark.miller@gmail.com
+  sender_phone: null
+  display_name: Mark Miller
+  text: Checking in on order 8821. Can you email receipt?
+  true_identity_id: user_1
+- message_id: m4
+  timestamp: '2026-10-01T11:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+15550100'
+  display_name: null
+  text: Also please confirm delivery time for Sarah dental package. Sarah.
+  true_identity_id: user_2

@@ -1,0 +1,34 @@
+scenario_id: dev_19
+title: Auto repair estimate voicemail
+ambiguity_type: name_only
+true_identities:
+- identity_id: user_1
+  canonical_name: Alex Petrov
+  canonical_email: alex.petrov@speedmotors.com
+  canonical_phone: '+12065551901'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T14:00:00Z'
+  channel: email
+  sender_email: alex.petrov@speedmotors.com
+  sender_phone: null
+  display_name: Alex Petrov
+  text: Quote 401 for transmission repair on Honda Civic sedan.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T14:20:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+12065551901'
+  display_name: null
+  text: 'Alex Petrov: replacement transmission parts will arrive by Wednesday.'
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T15:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: null
+  display_name: null
+  text: Hi this is Alex Petrov following up on the Civic transmission replacement
+    estimate.
+  true_identity_id: user_1

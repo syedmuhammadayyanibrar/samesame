@@ -1,0 +1,45 @@
+scenario_id: dev_09
+title: Trucking dispatcher shared line
+ambiguity_type: reused_phone
+true_identities:
+- identity_id: user_1
+  canonical_name: Karen Miller
+  canonical_email: karen.dispatch@logisticsgroup.com
+  canonical_phone: '+14045550900'
+- identity_id: user_2
+  canonical_name: Tom Hayes
+  canonical_email: null
+  canonical_phone: '+14045550900'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T07:00:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+14045550900'
+  display_name: null
+  text: Dispatcher Karen here, scheduling maintenance for rig 12 engine inspection.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T07:15:00Z'
+  channel: email
+  sender_email: karen.dispatch@logisticsgroup.com
+  sender_phone: null
+  display_name: Karen Miller
+  text: Rig 12 maintenance paperwork attached for billing.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T08:00:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+14045550900'
+  display_name: null
+  text: Driver Tom here, Rig 12 has flat tire on highway 85.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T08:30:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+14045550900'
+  display_name: null
+  text: Tom again, roadside tow assistance is on site at mile marker 40.
+  true_identity_id: user_2

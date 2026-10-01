@@ -1,0 +1,45 @@
+scenario_id: dev_06
+title: University academic department overlap
+ambiguity_type: shared_domain
+true_identities:
+- identity_id: user_1
+  canonical_name: Charles Davis
+  canonical_email: c.davis@state.edu
+  canonical_phone: '+15125550601'
+- identity_id: user_2
+  canonical_name: Maria Martinez
+  canonical_email: m.martinez@state.edu
+  canonical_phone: '+15125550602'
+messages:
+- message_id: m1
+  timestamp: '2026-10-01T14:00:00Z'
+  channel: email
+  sender_email: c.davis@state.edu
+  sender_phone: null
+  display_name: Charles Davis
+  text: NSF grant application review for biology department lab equipment.
+  true_identity_id: user_1
+- message_id: m2
+  timestamp: '2026-10-01T14:10:00Z'
+  channel: sms
+  sender_email: null
+  sender_phone: '+15125550601'
+  display_name: null
+  text: Charles Davis here following up on the NSF grant submission.
+  true_identity_id: user_1
+- message_id: m3
+  timestamp: '2026-10-01T14:30:00Z'
+  channel: email
+  sender_email: m.martinez@state.edu
+  sender_phone: null
+  display_name: Maria Martinez
+  text: Budget approvals for engineering faculty travel expenses.
+  true_identity_id: user_2
+- message_id: m4
+  timestamp: '2026-10-01T14:40:00Z'
+  channel: voice
+  sender_email: null
+  sender_phone: '+15125550602'
+  display_name: null
+  text: Maria Martinez calling about engineering department fiscal year budget.
+  true_identity_id: user_2
