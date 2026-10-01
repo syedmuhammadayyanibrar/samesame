@@ -3,7 +3,10 @@ from itertools import combinations
 import numpy as np
 from stitch.models import Message
 from stitch.strategies.base import Stitcher
-from stitch.strategies.exact import normalize_email, normalize_phone
+from stitch.strategies.exact import (
+    get_message_emails,
+    get_message_phones
+)
 from stitch.strategies.fuzzy import (
     extract_domain,
     extract_area_code,
@@ -23,25 +26,29 @@ class EmbeddingMatchStitcher(Stitcher):
             self._model = SentenceTransformer(self.model_name)
         return self._model
 
-    def _identifiers_partially_match(self, m1: Message, m2: Message) -> bool:
-        e1 = normalize_email(m1.sender_email)
-        e2 = normalize_email(m2.sender_email)
-        if e1 and e2 and e1 == e2:
+    def _identifiers_partially_match(
+        self,
+        m1: Message,
+        m2: Message,
+        emails1: Set[str],
+        emails2: Set[str],
+        phones1: Set[str],
+        phones2: Set[str]
+    ) -> bool:
+        if emails1 & emails2:
             return True
 
-        p1 = normalize_phone(m1.sender_phone)
-        p2 = normalize_phone(m2.sender_phone)
-        if p1 and p2 and p1 == p2:
+        if phones1 & phones2:
             return True
 
-        d1 = extract_domain(m1.sender_email)
-        d2 = extract_domain(m2.sender_email)
-        if d1 and d2 and d1 == d2:
+        domains1 = {extract_domain(e) for e in emails1 if extract_domain(e)}
+        domains2 = {extract_domain(e) for e in emails2 if extract_domain(e)}
+        if domains1 & domains2:
             return True
 
-        ac1 = extract_area_code(m1.sender_phone)
-        ac2 = extract_area_code(m2.sender_phone)
-        if ac1 and ac2 and ac1 == ac2:
+        ac1 = {extract_area_code(p) for p in phones1 if extract_area_code(p)}
+        ac2 = {extract_area_code(p) for p in phones2 if extract_area_code(p)}
+        if ac1 & ac2:
             return True
 
         name1 = m1.display_name or extract_self_identified_name(m1.text)
@@ -61,12 +68,20 @@ class EmbeddingMatchStitcher(Stitcher):
         embeddings = model.encode(texts, normalize_embeddings=True)
         similarity_matrix = np.dot(embeddings, embeddings.T)
 
+        msg_emails = {m.message_id: get_message_emails(m) for m in messages}
+        msg_phones = {m.message_id: get_message_phones(m) for m in messages}
+
         matching_pairs: List[Tuple[str, str]] = []
         for i, j in combinations(range(len(messages)), 2):
             sim = float(similarity_matrix[i, j])
             m1 = messages[i]
             m2 = messages[j]
-            if sim >= self.similarity_threshold and self._identifiers_partially_match(m1, m2):
-                matching_pairs.append((m1.message_id, m2.message_id))
+            id1 = m1.message_id
+            id2 = m2.message_id
+
+            if sim >= self.similarity_threshold and self._identifiers_partially_match(
+                m1, m2, msg_emails[id1], msg_emails[id2], msg_phones[id1], msg_phones[id2]
+            ):
+                matching_pairs.append((id1, id2))
 
         return self.build_clusters_from_pairs(message_ids, matching_pairs)

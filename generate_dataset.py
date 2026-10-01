@@ -17,7 +17,7 @@ def generate_dev_scenarios():
                 {
                     "identity_id": "user_2",
                     "canonical_name": "Sarah Miller",
-                    "canonical_email": None,
+                    "canonical_email": "sarah.m@gmail.com",
                     "canonical_phone": "+15550100"
                 }
             ],
@@ -29,7 +29,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+15550100",
                     "display_name": None,
-                    "text": "Hi, I would like to check status on order 8821. Thanks, Mark.",
+                    "text": "Hi, I would like to check status on order 8821. Thanks, Mark Miller, mark.miller@gmail.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -39,7 +39,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+15550100",
                     "display_name": None,
-                    "text": "Hello, this is Sarah. I am calling about my husband Mark order 8821.",
+                    "text": "Hello, this is Sarah Miller calling from our family line about my dental package receipt. Email sarah.m@gmail.com.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -49,7 +49,7 @@ def generate_dev_scenarios():
                     "sender_email": "mark.miller@gmail.com",
                     "sender_phone": None,
                     "display_name": "Mark Miller",
-                    "text": "Checking in on order 8821. Can you email receipt?",
+                    "text": "Checking in on order 8821. Can you email receipt to mark.miller@gmail.com?",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -59,7 +59,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+15550100",
                     "display_name": None,
-                    "text": "Also please confirm delivery time for Sarah dental package. Sarah.",
+                    "text": "Please confirm delivery time for Sarah dental package. Sarah Miller.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -90,7 +90,7 @@ def generate_dev_scenarios():
                     "sender_email": "alice.vance@acme-logistics.com",
                     "sender_phone": None,
                     "display_name": "Alice Vance",
-                    "text": "Inquiring about enterprise fleet pricing for Q4 logistics.",
+                    "text": "Inquiring about enterprise fleet pricing for Q4 logistics. Reach my desk at +14155550201.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -100,7 +100,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+14155550201",
                     "display_name": None,
-                    "text": "Hi, Alice from Acme here regarding the Q4 fleet proposal.",
+                    "text": "Hi, Alice Vance from Acme here regarding the Q4 fleet proposal.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -110,7 +110,7 @@ def generate_dev_scenarios():
                     "sender_email": "bob.vance@acme-logistics.com",
                     "sender_phone": None,
                     "display_name": "Bob Vance",
-                    "text": "Need login access to warehouse management dashboard.",
+                    "text": "Need login access to warehouse management dashboard. Phone +14155550202.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -140,7 +140,7 @@ def generate_dev_scenarios():
                     "identity_id": "user_2",
                     "canonical_name": "John Doe",
                     "canonical_email": "john.doe.md@hospital.org",
-                    "canonical_phone": None
+                    "canonical_phone": "+16175550399"
                 }
             ],
             "messages": [
@@ -151,7 +151,7 @@ def generate_dev_scenarios():
                     "sender_email": "j.doe92@outlook.com",
                     "display_name": "Johnathan Doe",
                     "sender_phone": None,
-                    "text": "Need prescription refill for Lipitor medication.",
+                    "text": "Need prescription refill for Lipitor medication. Phone +16175550301.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -181,7 +181,7 @@ def generate_dev_scenarios():
                     "sender_email": "john.doe.md@hospital.org",
                     "display_name": "John Doe",
                     "sender_phone": None,
-                    "text": "Checking on pediatric facility availability schedule.",
+                    "text": "Checking on pediatric facility availability schedule. Office +16175550399.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -206,7 +206,7 @@ def generate_dev_scenarios():
                     "sender_email": "elena.rostova@techcorp.com",
                     "sender_phone": None,
                     "display_name": "Elena Rostova",
-                    "text": "I submitted warranty replacement request W991 for broken display.",
+                    "text": "I submitted warranty replacement request W991 for broken display. You can reach my mobile at +12065550401.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -226,7 +226,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+12065550401",
                     "display_name": None,
-                    "text": "Calling to confirm Seattle drop-off address for warranty W991, Elena Rostova.",
+                    "text": "Calling to confirm Seattle drop-off address for warranty W991, Elena Rostova at elena.rostova@techcorp.com.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -257,7 +257,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13125550500",
                     "display_name": None,
-                    "text": "Marcus Vance here, checking if my apartment security deposit was mailed.",
+                    "text": "Marcus Vance here, checking if my apartment security deposit was mailed to marcus.v@protonmail.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -267,7 +267,7 @@ def generate_dev_scenarios():
                     "sender_email": "marcus.v@protonmail.com",
                     "sender_phone": None,
                     "display_name": "Marcus Vance",
-                    "text": "Following up on lease refund deposit.",
+                    "text": "Following up on lease refund deposit for Marcus Vance.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -277,7 +277,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13125550500",
                     "display_name": None,
-                    "text": "Hi this is Chloe Higgins, I just got this new number and I want to set up internet service.",
+                    "text": "Hi this is Chloe Higgins, I just got this new number and I want to set up internet service. Email is chloe.higgins@gmail.com.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -287,7 +287,7 @@ def generate_dev_scenarios():
                     "sender_email": "chloe.higgins@gmail.com",
                     "sender_phone": None,
                     "display_name": "Chloe Higgins",
-                    "text": "Internet setup request for apartment 4B.",
+                    "text": "Internet setup request for apartment 4B, Chloe Higgins.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -318,7 +318,7 @@ def generate_dev_scenarios():
                     "sender_email": "c.davis@state.edu",
                     "sender_phone": None,
                     "display_name": "Charles Davis",
-                    "text": "NSF grant application review for biology department lab equipment.",
+                    "text": "NSF grant application review for biology department lab equipment. Cell +15125550601.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -338,7 +338,7 @@ def generate_dev_scenarios():
                     "sender_email": "m.martinez@state.edu",
                     "sender_phone": None,
                     "display_name": "Maria Martinez",
-                    "text": "Budget approvals for engineering faculty travel expenses.",
+                    "text": "Budget approvals for engineering faculty travel expenses. Phone +15125550602.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -373,7 +373,7 @@ def generate_dev_scenarios():
                     "sender_email": "michael.chang@apex.com",
                     "sender_phone": None,
                     "display_name": "Michael Chang",
-                    "text": "Booking conference room B for tomorrow afternoon board meeting.",
+                    "text": "Booking conference room B for tomorrow afternoon board meeting. Contact +14085550701.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -418,7 +418,7 @@ def generate_dev_scenarios():
                     "sender_email": "j.wright@gmail.com",
                     "sender_phone": None,
                     "display_name": "James Wright",
-                    "text": "Order confirmation for solar battery SB4401 shipment.",
+                    "text": "Order confirmation for solar battery SB4401 shipment. You can text status updates to +13035550801.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -438,7 +438,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13035550801",
                     "display_name": None,
-                    "text": "James Wright calling to confirm solar battery dispatch date.",
+                    "text": "James Wright calling to confirm solar battery dispatch date for j.wright@gmail.com.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -457,7 +457,7 @@ def generate_dev_scenarios():
                 {
                     "identity_id": "user_2",
                     "canonical_name": "Tom Hayes",
-                    "canonical_email": None,
+                    "canonical_email": "tom.driver@logisticsgroup.com",
                     "canonical_phone": "+14045550900"
                 }
             ],
@@ -469,7 +469,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+14045550900",
                     "display_name": None,
-                    "text": "Dispatcher Karen here, scheduling maintenance for rig 12 engine inspection.",
+                    "text": "Dispatcher Karen Miller here, scheduling maintenance for rig 12. Email karen.dispatch@logisticsgroup.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -479,7 +479,7 @@ def generate_dev_scenarios():
                     "sender_email": "karen.dispatch@logisticsgroup.com",
                     "sender_phone": None,
                     "display_name": "Karen Miller",
-                    "text": "Rig 12 maintenance paperwork attached for billing.",
+                    "text": "Rig 12 maintenance paperwork attached for billing. Karen Miller.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -489,7 +489,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+14045550900",
                     "display_name": None,
-                    "text": "Driver Tom here, Rig 12 has flat tire on highway 85.",
+                    "text": "Driver Tom Hayes here, Rig 12 has flat tire on highway 85. Email tom.driver@logisticsgroup.com.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -499,7 +499,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+14045550900",
                     "display_name": None,
-                    "text": "Tom again, roadside tow assistance is on site at mile marker 40.",
+                    "text": "Tom Hayes again, roadside tow assistance is on site at mile marker 40.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -530,7 +530,7 @@ def generate_dev_scenarios():
                     "sender_email": "ceo@nexus.io",
                     "sender_phone": None,
                     "display_name": "Rachel Green",
-                    "text": "Reviewing cloud vendor billing contracts and legal retainer invoices.",
+                    "text": "Reviewing cloud vendor billing contracts and legal retainer invoices. Direct line +16505551001.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -550,7 +550,7 @@ def generate_dev_scenarios():
                     "sender_email": "cto@nexus.io",
                     "sender_phone": None,
                     "display_name": "Devon Patel",
-                    "text": "Kubernetes cluster security audit results and vulnerability logs.",
+                    "text": "Kubernetes cluster security audit results and vulnerability logs. Direct line +16505551002.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -585,7 +585,7 @@ def generate_dev_scenarios():
                     "sender_email": "sarah.connor@cyber.org",
                     "sender_phone": None,
                     "display_name": "Sarah Connor",
-                    "text": "Q3 product marketing campaign review for upcoming product rollout.",
+                    "text": "Q3 product marketing campaign review for upcoming product rollout. Cell +17025551101.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -630,7 +630,7 @@ def generate_dev_scenarios():
                     "sender_email": "liam.becker@berlin-tech.de",
                     "sender_phone": None,
                     "display_name": "Liam Becker",
-                    "text": "Requesting seat change on flight LH404 to aisle seat.",
+                    "text": "Requesting seat change on flight LH404 to aisle seat. SMS contact +12125551201.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -650,7 +650,7 @@ def generate_dev_scenarios():
                     "sender_email": "liam.becker@berlin-tech.de",
                     "sender_phone": None,
                     "display_name": "Liam Becker",
-                    "text": "Can I also add an extra checked bag to flight LH404?",
+                    "text": "Can I also add an extra checked bag to flight LH404? Liam Becker, +12125551201.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -669,7 +669,7 @@ def generate_dev_scenarios():
                 {
                     "identity_id": "user_2",
                     "canonical_name": "Kevin Hernandez",
-                    "canonical_email": None,
+                    "canonical_email": "kevin.h@miami.edu",
                     "canonical_phone": "+13055551300"
                 }
             ],
@@ -681,7 +681,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13055551300",
                     "display_name": None,
-                    "text": "Hi this is Laura, need to pay dental copay for Kevin.",
+                    "text": "Hi this is Laura Hernandez, need to pay dental copay for Kevin. Email laura.h@miami.edu.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -691,7 +691,7 @@ def generate_dev_scenarios():
                     "sender_email": "laura.h@miami.edu",
                     "sender_phone": None,
                     "display_name": "Laura Hernandez",
-                    "text": "Receipt needed for Kevin dental cleaning insurance claim.",
+                    "text": "Receipt needed for Kevin dental cleaning insurance claim. Laura Hernandez.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -701,7 +701,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13055551300",
                     "display_name": None,
-                    "text": "Hey it is Kevin Hernandez, can I move my orthodontic bracket appointment?",
+                    "text": "Hey it is Kevin Hernandez, can I move my orthodontic bracket appointment? Email kevin.h@miami.edu.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -711,7 +711,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13055551300",
                     "display_name": None,
-                    "text": "Kevin calling, checking if 4pm Tuesday works for my braces adjustment.",
+                    "text": "Kevin Hernandez calling, checking if 4pm Tuesday works for braces adjustment.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -742,7 +742,7 @@ def generate_dev_scenarios():
                     "sender_email": "e.watson@metrohealth.org",
                     "sender_phone": None,
                     "display_name": "Emily Watson",
-                    "text": "Cardiology lab schedule for Friday catheterization clinic.",
+                    "text": "Cardiology lab schedule for Friday catheterization clinic. Pager +13125551401.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -762,7 +762,7 @@ def generate_dev_scenarios():
                     "sender_email": "r.chen@metrohealth.org",
                     "sender_phone": None,
                     "display_name": "Robert Chen",
-                    "text": "ICU telemetry bed census update for surgical wards.",
+                    "text": "ICU telemetry bed census update for surgical wards. Pager +13125551402.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -772,7 +772,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13125551402",
                     "display_name": None,
-                    "text": "Nurse Chen calling with telemetry ICU bed requests for neurology.",
+                    "text": "Nurse Robert Chen calling with telemetry ICU bed requests for neurology.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -797,7 +797,7 @@ def generate_dev_scenarios():
                     "sender_email": "david.ross@summit.org",
                     "sender_phone": None,
                     "display_name": "David Ross",
-                    "text": "Badge registration for AI developer summit keynote access.",
+                    "text": "Badge registration for AI developer summit keynote access. Cell +16195551501.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -842,7 +842,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+14155551601",
                     "display_name": None,
-                    "text": "Priya Patel calling to dispute fraudulent unauthorized charge of 450 dollars.",
+                    "text": "Priya Patel calling to dispute fraudulent charge of 450 dollars. Account email is priya.patel@sfbay.org.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -862,7 +862,7 @@ def generate_dev_scenarios():
                     "sender_email": "priya.patel@sfbay.org",
                     "sender_phone": None,
                     "display_name": "Priya Patel",
-                    "text": "Signed fraud dispute affidavit attached for debit card 1092.",
+                    "text": "Signed fraud dispute affidavit attached for debit card 1092. Contact +14155551601.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -893,7 +893,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+18005551700",
                     "display_name": None,
-                    "text": "Dave Miller here from conference room A, audio speaker is buzzing.",
+                    "text": "Dave Miller here from conference room A, audio speaker is buzzing. Ticket to dave.m@enterprise.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -903,7 +903,7 @@ def generate_dev_scenarios():
                     "sender_email": "dave.m@enterprise.com",
                     "sender_phone": None,
                     "display_name": "Dave Miller",
-                    "text": "Audio ticket for Conf Room A speaker buzzing issue.",
+                    "text": "Audio ticket for Conf Room A speaker buzzing issue. Dave Miller.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -913,7 +913,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+18005551700",
                     "display_name": None,
-                    "text": "Jessica Alba from conference room A, video projector will not turn on.",
+                    "text": "Jessica Alba from conference room A, video projector will not turn on. Email jessica.a@enterprise.com.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -923,7 +923,7 @@ def generate_dev_scenarios():
                     "sender_email": "jessica.a@enterprise.com",
                     "sender_phone": None,
                     "display_name": "Jessica Alba",
-                    "text": "Projector HDMI cable replacement needed in Room A.",
+                    "text": "Projector HDMI cable replacement needed in Room A. Jessica Alba.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -954,7 +954,7 @@ def generate_dev_scenarios():
                     "sender_email": "billing@vertex.com",
                     "sender_phone": None,
                     "display_name": "Vertex Billing",
-                    "text": "Invoice 9012 for software licensing renewal is overdue.",
+                    "text": "Invoice 9012 for software licensing renewal is overdue. Contact +16175551801.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -974,7 +974,7 @@ def generate_dev_scenarios():
                     "sender_email": "tax@vertex.com",
                     "sender_phone": None,
                     "display_name": "Vertex Tax Team",
-                    "text": "W9 tax exemption form requested for vendor onboarding.",
+                    "text": "W9 tax exemption form requested for vendor onboarding. Contact +16175551802.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -1009,7 +1009,7 @@ def generate_dev_scenarios():
                     "sender_email": "alex.petrov@speedmotors.com",
                     "sender_phone": None,
                     "display_name": "Alex Petrov",
-                    "text": "Quote 401 for transmission repair on Honda Civic sedan.",
+                    "text": "Quote 401 for transmission repair on Honda Civic sedan. Mobile +12065551901.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1054,7 +1054,7 @@ def generate_dev_scenarios():
                     "sender_email": "maya.lin@designer.co",
                     "sender_phone": None,
                     "display_name": "Maya Lin",
-                    "text": "Requesting cancellation of Pro plan annual subscription.",
+                    "text": "Requesting cancellation of Pro plan annual subscription. You can send confirmation SMS to +15035552001.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1074,7 +1074,7 @@ def generate_dev_scenarios():
                     "sender_email": None,
                     "sender_phone": "+15035552001",
                     "display_name": None,
-                    "text": "Maya Lin here, just verifying subscription cancellation was processed.",
+                    "text": "Maya Lin here at maya.lin@designer.co, just verifying subscription cancellation was processed.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -1116,7 +1116,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+18185553001",
                     "display_name": None,
-                    "text": "Frank Evans here, need walker delivery confirmation.",
+                    "text": "Frank Evans here, need walker delivery confirmation for frank.evans88@gmail.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1126,7 +1126,7 @@ def generate_test_scenarios():
                     "sender_email": "frank.evans88@gmail.com",
                     "sender_phone": None,
                     "display_name": "Frank Evans",
-                    "text": "Medical equipment prescription for walker attached.",
+                    "text": "Medical equipment prescription for walker attached. Reach me at +18185553001.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1136,7 +1136,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+18185553001",
                     "display_name": None,
-                    "text": "Hello this is Nancy Cole, caregiver for Frank Evans, calling about medication delivery times.",
+                    "text": "Hello this is Nancy Cole, caregiver for Frank Evans, calling about medication delivery. Email nancy.caregiver@agency.org.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -1146,7 +1146,7 @@ def generate_test_scenarios():
                     "sender_email": "nancy.caregiver@agency.org",
                     "sender_phone": None,
                     "display_name": "Nancy Cole",
-                    "text": "Caregiver authorization form for Frank Evans medical records.",
+                    "text": "Caregiver authorization form for Frank Evans medical records. Nancy Cole.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -1177,7 +1177,7 @@ def generate_test_scenarios():
                     "sender_email": "henry.adams@lexlegal.com",
                     "sender_phone": None,
                     "display_name": "Henry Adams",
-                    "text": "Deposition schedule for antitrust litigation case 774.",
+                    "text": "Deposition schedule for antitrust litigation case 774. Cell +12125553201.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1197,7 +1197,7 @@ def generate_test_scenarios():
                     "sender_email": "clara.oswald@lexlegal.com",
                     "sender_phone": None,
                     "display_name": "Clara Oswald",
-                    "text": "Patent licensing agreement draft for robotics client.",
+                    "text": "Patent licensing agreement draft for robotics client. Mobile +12125553202.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -1232,7 +1232,7 @@ def generate_test_scenarios():
                     "sender_email": "george.h@vintageguitars.com",
                     "sender_phone": None,
                     "display_name": "George Harrison",
-                    "text": "Inquiry regarding fret leveling on 1968 Stratocaster neck.",
+                    "text": "Inquiry regarding fret leveling on 1968 Stratocaster neck. Reach me at +16155553301.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1277,7 +1277,7 @@ def generate_test_scenarios():
                     "sender_email": "samantha.brooks@gmail.com",
                     "sender_phone": None,
                     "display_name": "Samantha Brooks",
-                    "text": "Exchange request for winter wool parka from size medium to large.",
+                    "text": "Exchange request for winter wool parka from medium to large. You can reach my mobile at +12065553401.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1297,7 +1297,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+12065553401",
                     "display_name": None,
-                    "text": "Samantha Brooks calling to verify the replacement parka has shipped.",
+                    "text": "Samantha Brooks calling to verify the replacement parka for samantha.brooks@gmail.com has shipped.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -1316,7 +1316,7 @@ def generate_test_scenarios():
                 {
                     "identity_id": "user_2",
                     "canonical_name": "Leo Bianchi",
-                    "canonical_email": None,
+                    "canonical_email": "leo.driver@ristorante.com",
                     "canonical_phone": "+13125553500"
                 }
             ],
@@ -1328,7 +1328,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13125553500",
                     "display_name": None,
-                    "text": "Chef Marco calling, need bulk organic flour delivery for Friday dinner rush.",
+                    "text": "Chef Marco Rossi calling, need bulk organic flour delivery. Email chef.marco@ristorante.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1338,7 +1338,7 @@ def generate_test_scenarios():
                     "sender_email": "chef.marco@ristorante.com",
                     "sender_phone": None,
                     "display_name": "Marco Rossi",
-                    "text": "Purchase order PO-991 for organic pizza flour and olive oil.",
+                    "text": "Purchase order PO-991 for organic pizza flour and olive oil. Marco Rossi.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1348,7 +1348,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13125553500",
                     "display_name": None,
-                    "text": "Delivery driver Leo here, delivery scooter headlight is broken.",
+                    "text": "Delivery driver Leo Bianchi here, scooter headlight is broken. Email leo.driver@ristorante.com.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -1358,7 +1358,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+13125553500",
                     "display_name": None,
-                    "text": "Leo calling again, taking backup vehicle for orders in West Loop.",
+                    "text": "Leo Bianchi calling again, taking backup vehicle for orders in West Loop.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -1389,7 +1389,7 @@ def generate_test_scenarios():
                     "sender_email": "a.vance@lincoln-hs.edu",
                     "sender_phone": None,
                     "display_name": "Arthur Vance",
-                    "text": "Science lab safety goggles and chemical storage cabinet order.",
+                    "text": "Science lab safety goggles and chemical storage cabinet order. Phone +14025553601.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1409,7 +1409,7 @@ def generate_test_scenarios():
                     "sender_email": "e.gomez@lincoln-hs.edu",
                     "sender_phone": None,
                     "display_name": "Elena Gomez",
-                    "text": "Calculus textbooks and graphing calculator purchase requisition.",
+                    "text": "Calculus textbooks and graphing calculator purchase requisition. Phone +14025553602.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -1444,7 +1444,7 @@ def generate_test_scenarios():
                     "sender_email": "brian.oconnor@fasttrack.com",
                     "sender_phone": None,
                     "display_name": "Brian O'Connor",
-                    "text": "Key duplication and deadbolt lock repair request for unit 12.",
+                    "text": "Key duplication and deadbolt lock repair request for unit 12. Cell +13105553701.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1489,7 +1489,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+14155553801",
                     "display_name": None,
-                    "text": "Nathan Drake calling to report rear bumper collision on Highway 1.",
+                    "text": "Nathan Drake calling to report rear bumper collision on Highway 1. Email is nathan.drake@uncharted.com.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1509,7 +1509,7 @@ def generate_test_scenarios():
                     "sender_email": "nathan.drake@uncharted.com",
                     "sender_phone": None,
                     "display_name": "Nathan Drake",
-                    "text": "Accident damage photos and repair shop estimate for claim CLM7782.",
+                    "text": "Accident damage photos and repair shop estimate for claim CLM7782. Mobile +14155553801.",
                     "true_identity_id": "user_1"
                 }
             ]
@@ -1528,7 +1528,7 @@ def generate_test_scenarios():
                 {
                     "identity_id": "user_2",
                     "canonical_name": "Jerry Finn",
-                    "canonical_email": None,
+                    "canonical_email": "jerry.finn@river.org",
                     "canonical_phone": "+12125553900"
                 }
             ],
@@ -1540,7 +1540,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+12125553900",
                     "display_name": None,
-                    "text": "Tom Sawyer calling to upgrade apartment internet router to fiber gigabit.",
+                    "text": "Tom Sawyer calling to upgrade apartment internet router to fiber gigabit. Account tom.sawyer@river.org.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1550,7 +1550,7 @@ def generate_test_scenarios():
                     "sender_email": "tom.sawyer@river.org",
                     "sender_phone": None,
                     "display_name": "Tom Sawyer",
-                    "text": "Account verification for fiber gigabit installation at unit 5.",
+                    "text": "Account verification for fiber gigabit installation at unit 5. Tom Sawyer.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1560,7 +1560,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+12125553900",
                     "display_name": None,
-                    "text": "Hi this is Jerry Finn, roommate of Tom, asking if technician brings cables.",
+                    "text": "Hi this is Jerry Finn, roommate of Tom, asking if technician brings cables. Email jerry.finn@river.org.",
                     "true_identity_id": "user_2"
                 },
                 {
@@ -1570,7 +1570,7 @@ def generate_test_scenarios():
                     "sender_email": None,
                     "sender_phone": "+12125553900",
                     "display_name": None,
-                    "text": "Jerry calling back, need Saturday technician installation slot for broadband.",
+                    "text": "Jerry Finn calling back, need Saturday technician installation slot for broadband.",
                     "true_identity_id": "user_2"
                 }
             ]
@@ -1601,7 +1601,7 @@ def generate_test_scenarios():
                     "sender_email": "olivia.wilde@enterprise-ai.co",
                     "sender_phone": None,
                     "display_name": "Olivia Wilde",
-                    "text": "Enterprise licensing contract renewal and customer success review.",
+                    "text": "Enterprise licensing contract renewal and customer success review. Cell +14155554001.",
                     "true_identity_id": "user_1"
                 },
                 {
@@ -1621,7 +1621,7 @@ def generate_test_scenarios():
                     "sender_email": "ethan.hunt@enterprise-ai.co",
                     "sender_phone": None,
                     "display_name": "Ethan Hunt",
-                    "text": "Technical architecture specification for on-premise GPU cluster deployment.",
+                    "text": "Technical architecture specification for on-premise GPU cluster deployment. Direct +14155554002.",
                     "true_identity_id": "user_2"
                 },
                 {

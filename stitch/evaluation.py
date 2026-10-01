@@ -29,13 +29,21 @@ class ScenarioEvaluationResult:
 class AggregatedEvaluationResult:
     strategy_name: str
     num_scenarios: int
+    total_tp: int
+    total_fp: int
+    total_fn: int
+    total_tn: int
     precision: float
     recall: float
     f1: float
+    total_over_split: int
+    total_identities: int
     over_splitting_rate: float
+    total_over_merged: int
+    total_predicted_clusters: int
     over_merging_rate: float
     average_stitching_inflation: float
-    by_ambiguity_type: Dict[str, Dict[str, float]]
+    by_ambiguity_type: Dict[str, Dict[str, Any]]
     failure_mode_counts: Dict[str, int]
     dominant_failure_mode: str
     scenario_results: List[ScenarioEvaluationResult] = field(default_factory=list)
@@ -44,10 +52,10 @@ def evaluate_scenario(scenario: Scenario, stitcher: Stitcher) -> ScenarioEvaluat
     messages = scenario.messages
     message_ids = [m.message_id for m in messages]
     predicted_clusters = stitcher.partition(messages)
-    
+
     pred_map = Stitcher.clusters_to_map(predicted_clusters)
     true_map = {m.message_id: m.true_identity_id for m in messages if m.true_identity_id is not None}
-    
+
     unique_true_ids = set(true_map.values())
     num_true_clusters = len(unique_true_ids)
     num_predicted_clusters = len(predicted_clusters)
@@ -211,7 +219,7 @@ def evaluate_scenarios(
     over_merging_rate = total_over_merged / total_predicted_clusters if total_predicted_clusters > 0 else 0.0
     avg_inflation = sum(inflations) / len(inflations) if inflations else 0.0
 
-    ambiguity_breakdown: Dict[str, Dict[str, float]] = {}
+    ambiguity_breakdown: Dict[str, Dict[str, Any]] = {}
     for amb, stats in by_ambiguity.items():
         p_tp = stats["tp"]
         p_fp = stats["fp"]
@@ -220,6 +228,9 @@ def evaluate_scenarios(
         p_rec = p_tp / (p_tp + p_fn) if (p_tp + p_fn) > 0 else (1.0 if p_fn == 0 else 0.0)
         p_f1 = (2 * p_prec * p_rec) / (p_prec + p_rec) if (p_prec + p_rec) > 0 else 0.0
         ambiguity_breakdown[amb] = {
+            "tp": p_tp,
+            "fp": p_fp,
+            "fn": p_fn,
             "precision": p_prec,
             "recall": p_rec,
             "f1": p_f1,
@@ -231,10 +242,18 @@ def evaluate_scenarios(
     return AggregatedEvaluationResult(
         strategy_name=strategy_name,
         num_scenarios=len(scenarios),
+        total_tp=total_tp,
+        total_fp=total_fp,
+        total_fn=total_fn,
+        total_tn=total_tn,
         precision=overall_precision,
         recall=overall_recall,
         f1=overall_f1,
+        total_over_split=total_over_split,
+        total_identities=total_identities,
         over_splitting_rate=over_splitting_rate,
+        total_over_merged=total_over_merged,
+        total_predicted_clusters=total_predicted_clusters,
         over_merging_rate=over_merging_rate,
         average_stitching_inflation=avg_inflation,
         by_ambiguity_type=ambiguity_breakdown,

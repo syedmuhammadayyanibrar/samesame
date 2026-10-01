@@ -1,6 +1,14 @@
 import pytest
 from stitch.models import Message, Identity, Scenario
-from stitch.strategies.exact import ExactMatchStitcher, normalize_phone, normalize_email
+from stitch.strategies.exact import (
+    ExactMatchStitcher,
+    normalize_phone,
+    normalize_email,
+    extract_emails_from_text,
+    extract_phones_from_text,
+    get_message_emails,
+    get_message_phones
+)
 from stitch.strategies.fuzzy import (
     FuzzyMatchStitcher,
     extract_domain,
@@ -21,6 +29,17 @@ def test_normalization():
     assert normalize_email("nodomain") is None
     assert normalize_email(None) is None
 
+def test_body_extraction():
+    text = "Please reach me at user@test.com or call 206-555-0401 today."
+    emails = extract_emails_from_text(text)
+    phones = extract_phones_from_text(text)
+    assert "user@test.com" in emails
+    assert "12065550401" in phones
+
+    msg = Message("m1", "2026-10-01T10:00:00Z", "sms", None, None, None, text)
+    assert "user@test.com" in get_message_emails(msg)
+    assert "12065550401" in get_message_phones(msg)
+
 def test_fuzzy_helpers():
     assert extract_domain("alice@company.org") == "company.org"
     assert extract_area_code("+14155550192") == "415"
@@ -32,17 +51,16 @@ def test_fuzzy_helpers():
 def test_exact_match_partition():
     stitcher = ExactMatchStitcher()
     m1 = Message("m1", "2026-10-01T10:00:00Z", "email", "alice@test.com", None, "Alice", "Hello")
-    m2 = Message("m2", "2026-10-01T10:05:00Z", "sms", None, "+15550100", "Alice", "Hi")
+    m2 = Message("m2", "2026-10-01T10:05:00Z", "sms", None, "+15550100", "Alice", "Hi, my email is alice@test.com")
     m3 = Message("m3", "2026-10-01T10:10:00Z", "email", "alice@test.com", None, "Alice", "Followup")
-    m4 = Message("m4", "2026-10-01T10:15:00Z", "voice", None, None, None, "Voice note")
+    m4 = Message("m4", "2026-10-01T10:15:00Z", "voice", None, None, None, "Voice note without identifiers")
 
     clusters = stitcher.partition([m1, m2, m3, m4])
     cluster_map = stitcher.clusters_to_map(clusters)
 
+    assert cluster_map["m1"] == cluster_map["m2"]
     assert cluster_map["m1"] == cluster_map["m3"]
-    assert cluster_map["m1"] != cluster_map["m2"]
     assert cluster_map["m4"] != cluster_map["m1"]
-    assert cluster_map["m4"] != cluster_map["m2"]
 
 def test_fuzzy_match_partition():
     stitcher = FuzzyMatchStitcher()

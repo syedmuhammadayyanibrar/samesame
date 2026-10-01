@@ -13,7 +13,8 @@ messages:
   sender_email: null
   sender_phone: '+14155553801'
   display_name: null
-  text: Nathan Drake calling to report rear bumper collision on Highway 1.
+  text: Nathan Drake calling to report rear bumper collision on Highway 1. Email is
+    nathan.drake@uncharted.com.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T11:20:00Z'
@@ -29,5 +30,6 @@ messages:
   sender_email: nathan.drake@uncharted.com
   sender_phone: null
   display_name: Nathan Drake
-  text: Accident damage photos and repair shop estimate for claim CLM7782.
+  text: Accident damage photos and repair shop estimate for claim CLM7782. Mobile
+    +14155553801.
   true_identity_id: user_1

@@ -4,7 +4,12 @@ from typing import List, Set, Tuple, Optional
 from itertools import combinations
 from stitch.models import Message
 from stitch.strategies.base import Stitcher
-from stitch.strategies.exact import normalize_email, normalize_phone
+from stitch.strategies.exact import (
+    normalize_email,
+    normalize_phone,
+    get_message_emails,
+    get_message_phones
+)
 
 def extract_domain(email: Optional[str]) -> Optional[str]:
     norm = normalize_email(email)
@@ -16,10 +21,10 @@ def extract_area_code(phone: Optional[str]) -> Optional[str]:
     digits = normalize_phone(phone)
     if not digits:
         return None
-    if len(digits) == 10:
-        return digits[:3]
     if len(digits) == 11 and digits.startswith("1"):
         return digits[1:4]
+    if len(digits) == 10:
+        return digits[:3]
     if len(digits) >= 10:
         return digits[:3]
     return None
@@ -64,35 +69,41 @@ class FuzzyMatchStitcher(Stitcher):
         message_ids = [m.message_id for m in messages]
         matching_pairs: List[Tuple[str, str]] = []
 
+        msg_emails = {m.message_id: get_message_emails(m) for m in messages}
+        msg_phones = {m.message_id: get_message_phones(m) for m in messages}
+        msg_domains = {
+            m.message_id: {extract_domain(e) for e in msg_emails[m.message_id] if extract_domain(e)}
+            for m in messages
+        }
+        msg_area_codes = {
+            m.message_id: {extract_area_code(p) for p in msg_phones[m.message_id] if extract_area_code(p)}
+            for m in messages
+        }
+
         for m1, m2 in combinations(messages, 2):
-            e1 = normalize_email(m1.sender_email)
-            e2 = normalize_email(m2.sender_email)
-            if e1 and e2 and e1 == e2:
-                matching_pairs.append((m1.message_id, m2.message_id))
+            id1 = m1.message_id
+            id2 = m2.message_id
+
+            if msg_emails[id1] & msg_emails[id2]:
+                matching_pairs.append((id1, id2))
                 continue
 
-            p1 = normalize_phone(m1.sender_phone)
-            p2 = normalize_phone(m2.sender_phone)
-            if p1 and p2 and p1 == p2:
-                matching_pairs.append((m1.message_id, m2.message_id))
+            if msg_phones[id1] & msg_phones[id2]:
+                matching_pairs.append((id1, id2))
                 continue
 
-            d1 = extract_domain(m1.sender_email)
-            d2 = extract_domain(m2.sender_email)
-            if d1 and d2 and d1 == d2:
-                matching_pairs.append((m1.message_id, m2.message_id))
+            if msg_domains[id1] & msg_domains[id2]:
+                matching_pairs.append((id1, id2))
                 continue
 
-            ac1 = extract_area_code(m1.sender_phone)
-            ac2 = extract_area_code(m2.sender_phone)
-            if ac1 and ac2 and ac1 == ac2:
-                matching_pairs.append((m1.message_id, m2.message_id))
+            if msg_area_codes[id1] & msg_area_codes[id2]:
+                matching_pairs.append((id1, id2))
                 continue
 
             name1 = m1.display_name or extract_self_identified_name(m1.text)
             name2 = m2.display_name or extract_self_identified_name(m2.text)
             if names_partially_match(name1, name2):
-                matching_pairs.append((m1.message_id, m2.message_id))
+                matching_pairs.append((id1, id2))
                 continue
 
         return self.build_clusters_from_pairs(message_ids, matching_pairs)

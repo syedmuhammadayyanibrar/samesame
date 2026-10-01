@@ -8,7 +8,7 @@ true_identities:
   canonical_phone: '+12125553900'
 - identity_id: user_2
   canonical_name: Jerry Finn
-  canonical_email: null
+  canonical_email: jerry.finn@river.org
   canonical_phone: '+12125553900'
 messages:
 - message_id: m1
@@ -18,6 +18,7 @@ messages:
   sender_phone: '+12125553900'
   display_name: null
   text: Tom Sawyer calling to upgrade apartment internet router to fiber gigabit.
+    Account tom.sawyer@river.org.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T14:15:00Z'
@@ -25,7 +26,7 @@ messages:
   sender_email: tom.sawyer@river.org
   sender_phone: null
   display_name: Tom Sawyer
-  text: Account verification for fiber gigabit installation at unit 5.
+  text: Account verification for fiber gigabit installation at unit 5. Tom Sawyer.
   true_identity_id: user_1
 - message_id: m3
   timestamp: '2026-10-02T15:00:00Z'
@@ -34,6 +35,7 @@ messages:
   sender_phone: '+12125553900'
   display_name: null
   text: Hi this is Jerry Finn, roommate of Tom, asking if technician brings cables.
+    Email jerry.finn@river.org.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-02T15:30:00Z'
@@ -41,5 +43,5 @@ messages:
   sender_email: null
   sender_phone: '+12125553900'
   display_name: null
-  text: Jerry calling back, need Saturday technician installation slot for broadband.
+  text: Jerry Finn calling back, need Saturday technician installation slot for broadband.
   true_identity_id: user_2

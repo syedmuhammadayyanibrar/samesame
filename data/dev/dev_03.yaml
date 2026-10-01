@@ -9,7 +9,7 @@ true_identities:
 - identity_id: user_2
   canonical_name: John Doe
   canonical_email: john.doe.md@hospital.org
-  canonical_phone: null
+  canonical_phone: '+16175550399'
 messages:
 - message_id: m1
   timestamp: '2026-10-01T08:00:00Z'
@@ -17,7 +17,7 @@ messages:
   sender_email: j.doe92@outlook.com
   display_name: Johnathan Doe
   sender_phone: null
-  text: Need prescription refill for Lipitor medication.
+  text: Need prescription refill for Lipitor medication. Phone +16175550301.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T08:15:00Z'
@@ -42,5 +42,5 @@ messages:
   sender_email: john.doe.md@hospital.org
   display_name: John Doe
   sender_phone: null
-  text: Checking on pediatric facility availability schedule.
+  text: Checking on pediatric facility availability schedule. Office +16175550399.
   true_identity_id: user_2

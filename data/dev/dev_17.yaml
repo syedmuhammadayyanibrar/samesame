@@ -17,7 +17,8 @@ messages:
   sender_email: null
   sender_phone: '+18005551700'
   display_name: null
-  text: Dave Miller here from conference room A, audio speaker is buzzing.
+  text: Dave Miller here from conference room A, audio speaker is buzzing. Ticket
+    to dave.m@enterprise.com.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T10:15:00Z'
@@ -25,7 +26,7 @@ messages:
   sender_email: dave.m@enterprise.com
   sender_phone: null
   display_name: Dave Miller
-  text: Audio ticket for Conf Room A speaker buzzing issue.
+  text: Audio ticket for Conf Room A speaker buzzing issue. Dave Miller.
   true_identity_id: user_1
 - message_id: m3
   timestamp: '2026-10-01T11:00:00Z'
@@ -33,7 +34,8 @@ messages:
   sender_email: null
   sender_phone: '+18005551700'
   display_name: null
-  text: Jessica Alba from conference room A, video projector will not turn on.
+  text: Jessica Alba from conference room A, video projector will not turn on. Email
+    jessica.a@enterprise.com.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-01T11:20:00Z'
@@ -41,5 +43,5 @@ messages:
   sender_email: jessica.a@enterprise.com
   sender_phone: null
   display_name: Jessica Alba
-  text: Projector HDMI cable replacement needed in Room A.
+  text: Projector HDMI cable replacement needed in Room A. Jessica Alba.
   true_identity_id: user_2

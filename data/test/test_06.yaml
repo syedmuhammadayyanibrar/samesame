@@ -17,7 +17,7 @@ messages:
   sender_email: a.vance@lincoln-hs.edu
   sender_phone: null
   display_name: Arthur Vance
-  text: Science lab safety goggles and chemical storage cabinet order.
+  text: Science lab safety goggles and chemical storage cabinet order. Phone +14025553601.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T08:20:00Z'
@@ -33,7 +33,7 @@ messages:
   sender_email: e.gomez@lincoln-hs.edu
   sender_phone: null
   display_name: Elena Gomez
-  text: Calculus textbooks and graphing calculator purchase requisition.
+  text: Calculus textbooks and graphing calculator purchase requisition. Phone +14025553602.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-02T09:30:00Z'

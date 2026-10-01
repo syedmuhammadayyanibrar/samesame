@@ -17,7 +17,8 @@ messages:
   sender_email: null
   sender_phone: '+13125550500'
   display_name: null
-  text: Marcus Vance here, checking if my apartment security deposit was mailed.
+  text: Marcus Vance here, checking if my apartment security deposit was mailed to
+    marcus.v@protonmail.com.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-09-01T10:15:00Z'
@@ -25,7 +26,7 @@ messages:
   sender_email: marcus.v@protonmail.com
   sender_phone: null
   display_name: Marcus Vance
-  text: Following up on lease refund deposit.
+  text: Following up on lease refund deposit for Marcus Vance.
   true_identity_id: user_1
 - message_id: m3
   timestamp: '2026-10-01T11:00:00Z'
@@ -34,7 +35,7 @@ messages:
   sender_phone: '+13125550500'
   display_name: null
   text: Hi this is Chloe Higgins, I just got this new number and I want to set up
-    internet service.
+    internet service. Email is chloe.higgins@gmail.com.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-01T11:15:00Z'
@@ -42,5 +43,5 @@ messages:
   sender_email: chloe.higgins@gmail.com
   sender_phone: null
   display_name: Chloe Higgins
-  text: Internet setup request for apartment 4B.
+  text: Internet setup request for apartment 4B, Chloe Higgins.
   true_identity_id: user_2

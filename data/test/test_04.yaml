@@ -13,7 +13,8 @@ messages:
   sender_email: samantha.brooks@gmail.com
   sender_phone: null
   display_name: Samantha Brooks
-  text: Exchange request for winter wool parka from size medium to large.
+  text: Exchange request for winter wool parka from medium to large. You can reach
+    my mobile at +12065553401.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T09:20:00Z'
@@ -29,5 +30,6 @@ messages:
   sender_email: null
   sender_phone: '+12065553401'
   display_name: null
-  text: Samantha Brooks calling to verify the replacement parka has shipped.
+  text: Samantha Brooks calling to verify the replacement parka for samantha.brooks@gmail.com
+    has shipped.
   true_identity_id: user_1

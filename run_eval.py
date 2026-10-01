@@ -37,14 +37,17 @@ def run_annotator_agreement_check():
     return overall_kappa, flagged
 
 def print_evaluation_summary(res: AggregatedEvaluationResult, dataset_label: str):
+    pred_pairs = res.total_tp + res.total_fp
+    true_pairs = res.total_tp + res.total_fn
+
     print("-" * 60)
     print(f"STRATEGY: {res.strategy_name} on {dataset_label} ({res.num_scenarios} scenarios)")
     print("-" * 60)
-    print(f"Precision:                   {res.precision:.4f}")
-    print(f"Recall:                      {res.recall:.4f}")
+    print(f"Precision:                   {res.precision * 100:.2f}% ({res.total_tp}/{pred_pairs})")
+    print(f"Recall:                      {res.recall * 100:.2f}% ({res.total_tp}/{true_pairs})")
     print(f"F1 Score:                    {res.f1:.4f}")
-    print(f"Over-Splitting Rate:         {res.over_splitting_rate * 100:.2f}%")
-    print(f"Over-Merging Rate:           {res.over_merging_rate * 100:.2f}%")
+    print(f"Over-Splitting Rate:         {res.over_splitting_rate * 100:.2f}% ({res.total_over_split}/{res.total_identities} identities)")
+    print(f"Over-Merging Rate:           {res.over_merging_rate * 100:.2f}% ({res.total_over_merged}/{res.total_predicted_clusters} clusters)")
     print(f"Average Stitching Inflation: {res.average_stitching_inflation:+.4f}")
     print(f"Dominant Failure Mode:       {res.dominant_failure_mode}")
     print("Failure Mode Breakdown:")
@@ -52,7 +55,9 @@ def print_evaluation_summary(res: AggregatedEvaluationResult, dataset_label: str
         print(f"  {mode}: {count}")
     print("Breakdown By Ambiguity Type:")
     for amb, stats in res.by_ambiguity_type.items():
-        print(f"  [{amb}] Prec: {stats['precision']:.2f} | Rec: {stats['recall']:.2f} | F1: {stats['f1']:.2f} | Inflation: {stats['avg_inflation']:+.2f}")
+        a_pred = stats['tp'] + stats['fp']
+        a_true = stats['tp'] + stats['fn']
+        print(f"  [{amb}] Prec: {stats['precision'] * 100:.1f}% ({stats['tp']}/{a_pred}) | Rec: {stats['recall'] * 100:.1f}% ({stats['tp']}/{a_true}) | F1: {stats['f1']:.2f} | Inflation: {stats['avg_inflation']:+.2f}")
     print()
 
 def main():

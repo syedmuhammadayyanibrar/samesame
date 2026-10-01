@@ -8,7 +8,7 @@ true_identities:
   canonical_phone: '+13125553500'
 - identity_id: user_2
   canonical_name: Leo Bianchi
-  canonical_email: null
+  canonical_email: leo.driver@ristorante.com
   canonical_phone: '+13125553500'
 messages:
 - message_id: m1
@@ -17,7 +17,7 @@ messages:
   sender_email: null
   sender_phone: '+13125553500'
   display_name: null
-  text: Chef Marco calling, need bulk organic flour delivery for Friday dinner rush.
+  text: Chef Marco Rossi calling, need bulk organic flour delivery. Email chef.marco@ristorante.com.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T16:20:00Z'
@@ -25,7 +25,7 @@ messages:
   sender_email: chef.marco@ristorante.com
   sender_phone: null
   display_name: Marco Rossi
-  text: Purchase order PO-991 for organic pizza flour and olive oil.
+  text: Purchase order PO-991 for organic pizza flour and olive oil. Marco Rossi.
   true_identity_id: user_1
 - message_id: m3
   timestamp: '2026-10-02T18:00:00Z'
@@ -33,7 +33,7 @@ messages:
   sender_email: null
   sender_phone: '+13125553500'
   display_name: null
-  text: Delivery driver Leo here, delivery scooter headlight is broken.
+  text: Delivery driver Leo Bianchi here, scooter headlight is broken. Email leo.driver@ristorante.com.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-02T18:20:00Z'
@@ -41,5 +41,5 @@ messages:
   sender_email: null
   sender_phone: '+13125553500'
   display_name: null
-  text: Leo calling again, taking backup vehicle for orders in West Loop.
+  text: Leo Bianchi calling again, taking backup vehicle for orders in West Loop.
   true_identity_id: user_2

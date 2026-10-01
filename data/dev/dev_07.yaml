@@ -13,7 +13,7 @@ messages:
   sender_email: michael.chang@apex.com
   sender_phone: null
   display_name: Michael Chang
-  text: Booking conference room B for tomorrow afternoon board meeting.
+  text: Booking conference room B for tomorrow afternoon board meeting. Contact +14085550701.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T15:15:00Z'

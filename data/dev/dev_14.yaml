@@ -17,7 +17,7 @@ messages:
   sender_email: e.watson@metrohealth.org
   sender_phone: null
   display_name: Emily Watson
-  text: Cardiology lab schedule for Friday catheterization clinic.
+  text: Cardiology lab schedule for Friday catheterization clinic. Pager +13125551401.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T08:15:00Z'
@@ -33,7 +33,7 @@ messages:
   sender_email: r.chen@metrohealth.org
   sender_phone: null
   display_name: Robert Chen
-  text: ICU telemetry bed census update for surgical wards.
+  text: ICU telemetry bed census update for surgical wards. Pager +13125551402.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-01T09:30:00Z'
@@ -41,5 +41,5 @@ messages:
   sender_email: null
   sender_phone: '+13125551402'
   display_name: null
-  text: Nurse Chen calling with telemetry ICU bed requests for neurology.
+  text: Nurse Robert Chen calling with telemetry ICU bed requests for neurology.
   true_identity_id: user_2

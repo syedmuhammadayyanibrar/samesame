@@ -17,7 +17,7 @@ messages:
   sender_email: billing@vertex.com
   sender_phone: null
   display_name: Vertex Billing
-  text: Invoice 9012 for software licensing renewal is overdue.
+  text: Invoice 9012 for software licensing renewal is overdue. Contact +16175551801.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T09:20:00Z'
@@ -33,7 +33,7 @@ messages:
   sender_email: tax@vertex.com
   sender_phone: null
   display_name: Vertex Tax Team
-  text: W9 tax exemption form requested for vendor onboarding.
+  text: W9 tax exemption form requested for vendor onboarding. Contact +16175551802.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-01T10:30:00Z'

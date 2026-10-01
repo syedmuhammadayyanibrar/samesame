@@ -13,7 +13,8 @@ messages:
   sender_email: maya.lin@designer.co
   sender_phone: null
   display_name: Maya Lin
-  text: Requesting cancellation of Pro plan annual subscription.
+  text: Requesting cancellation of Pro plan annual subscription. You can send confirmation
+    SMS to +15035552001.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T11:10:00Z'
@@ -29,5 +30,6 @@ messages:
   sender_email: null
   sender_phone: '+15035552001'
   display_name: null
-  text: Maya Lin here, just verifying subscription cancellation was processed.
+  text: Maya Lin here at maya.lin@designer.co, just verifying subscription cancellation
+    was processed.
   true_identity_id: user_1

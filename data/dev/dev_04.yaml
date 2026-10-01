@@ -13,7 +13,8 @@ messages:
   sender_email: elena.rostova@techcorp.com
   sender_phone: null
   display_name: Elena Rostova
-  text: I submitted warranty replacement request W991 for broken display.
+  text: I submitted warranty replacement request W991 for broken display. You can
+    reach my mobile at +12065550401.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T12:20:00Z'
@@ -29,5 +30,6 @@ messages:
   sender_email: null
   sender_phone: '+12065550401'
   display_name: null
-  text: Calling to confirm Seattle drop-off address for warranty W991, Elena Rostova.
+  text: Calling to confirm Seattle drop-off address for warranty W991, Elena Rostova
+    at elena.rostova@techcorp.com.
   true_identity_id: user_1

@@ -13,7 +13,8 @@ messages:
   sender_email: null
   sender_phone: '+14155551601'
   display_name: null
-  text: Priya Patel calling to dispute fraudulent unauthorized charge of 450 dollars.
+  text: Priya Patel calling to dispute fraudulent charge of 450 dollars. Account email
+    is priya.patel@sfbay.org.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T17:10:00Z'
@@ -29,5 +30,5 @@ messages:
   sender_email: priya.patel@sfbay.org
   sender_phone: null
   display_name: Priya Patel
-  text: Signed fraud dispute affidavit attached for debit card 1092.
+  text: Signed fraud dispute affidavit attached for debit card 1092. Contact +14155551601.
   true_identity_id: user_1

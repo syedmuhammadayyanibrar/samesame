@@ -17,7 +17,7 @@ messages:
   sender_email: henry.adams@lexlegal.com
   sender_phone: null
   display_name: Henry Adams
-  text: Deposition schedule for antitrust litigation case 774.
+  text: Deposition schedule for antitrust litigation case 774. Cell +12125553201.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T10:15:00Z'
@@ -33,7 +33,7 @@ messages:
   sender_email: clara.oswald@lexlegal.com
   sender_phone: null
   display_name: Clara Oswald
-  text: Patent licensing agreement draft for robotics client.
+  text: Patent licensing agreement draft for robotics client. Mobile +12125553202.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-02T11:20:00Z'

@@ -17,7 +17,7 @@ messages:
   sender_email: c.davis@state.edu
   sender_phone: null
   display_name: Charles Davis
-  text: NSF grant application review for biology department lab equipment.
+  text: NSF grant application review for biology department lab equipment. Cell +15125550601.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T14:10:00Z'
@@ -33,7 +33,7 @@ messages:
   sender_email: m.martinez@state.edu
   sender_phone: null
   display_name: Maria Martinez
-  text: Budget approvals for engineering faculty travel expenses.
+  text: Budget approvals for engineering faculty travel expenses. Phone +15125550602.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-01T14:40:00Z'

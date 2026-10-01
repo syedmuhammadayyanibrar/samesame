@@ -17,7 +17,7 @@ messages:
   sender_email: olivia.wilde@enterprise-ai.co
   sender_phone: null
   display_name: Olivia Wilde
-  text: Enterprise licensing contract renewal and customer success review.
+  text: Enterprise licensing contract renewal and customer success review. Cell +14155554001.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-02T16:20:00Z'
@@ -34,6 +34,7 @@ messages:
   sender_phone: null
   display_name: Ethan Hunt
   text: Technical architecture specification for on-premise GPU cluster deployment.
+    Direct +14155554002.
   true_identity_id: user_2
 - message_id: m4
   timestamp: '2026-10-02T17:30:00Z'

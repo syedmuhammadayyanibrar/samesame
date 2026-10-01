@@ -13,7 +13,7 @@ messages:
   sender_email: liam.becker@berlin-tech.de
   sender_phone: null
   display_name: Liam Becker
-  text: Requesting seat change on flight LH404 to aisle seat.
+  text: Requesting seat change on flight LH404 to aisle seat. SMS contact +12125551201.
   true_identity_id: user_1
 - message_id: m2
   timestamp: '2026-10-01T06:20:00Z'
@@ -29,5 +29,5 @@ messages:
   sender_email: liam.becker@berlin-tech.de
   sender_phone: null
   display_name: Liam Becker
-  text: Can I also add an extra checked bag to flight LH404?
+  text: Can I also add an extra checked bag to flight LH404? Liam Becker, +12125551201.
   true_identity_id: user_1
