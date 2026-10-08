@@ -1,5 +1,25 @@
-from dataclasses import dataclass
-from typing import Optional, List, Dict, Set, Any
+from dataclasses import dataclass, field
+from typing import Optional, List, Dict, Set, Any, Union
+
+@dataclass(frozen=True)
+class A2AContext:
+    agent_handle: str
+    target_handle: str
+    task_id: str
+
+@dataclass(frozen=True)
+class PermissionPolicy:
+    whitelist_emails: List[str] = field(default_factory=list)
+    blacklist_emails: List[str] = field(default_factory=list)
+    whitelist_phones: List[str] = field(default_factory=list)
+    blacklist_phones: List[str] = field(default_factory=list)
+
+@dataclass(frozen=True)
+class ContactMemory:
+    memory_id: str
+    contact_id: str
+    text: str
+    citations: List[str] = field(default_factory=list)
 
 @dataclass(frozen=True)
 class Message:
@@ -11,6 +31,9 @@ class Message:
     display_name: Optional[str]
     text: str
     true_identity_id: Optional[str] = None
+    contact_id: Optional[str] = None
+    a2a_context: Optional[Union[A2AContext, Dict[str, Any]]] = None
+    permission_policy: Optional[Union[PermissionPolicy, Dict[str, Any]]] = None
 
 @dataclass(frozen=True)
 class Identity:
@@ -26,3 +49,4 @@ class Scenario:
     ambiguity_type: str
     true_identities: List[Identity]
     messages: List[Message]
+    permission_policy: Optional[Union[PermissionPolicy, Dict[str, Any]]] = None

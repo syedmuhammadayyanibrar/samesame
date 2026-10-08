@@ -7,6 +7,9 @@ class Stitcher(ABC):
     def partition(self, messages: List[Message]) -> List[Set[str]]:
         pass
 
+    def stitch(self, messages: List[Message]) -> List[Set[str]]:
+        return self.partition(messages)
+
     @staticmethod
     def build_clusters_from_pairs(message_ids: List[str], pairs: List[Tuple[str, str]]) -> List[Set[str]]:
         parent = {m: m for m in message_ids}

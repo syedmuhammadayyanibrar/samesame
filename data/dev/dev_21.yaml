@@ -1,0 +1,45 @@
+scenario_id: dev_21
+title: A2A autonomous agent coordination
+ambiguity_type: none
+true_identities:
+  - identity_id: user_1
+    canonical_name: Agent Ops
+    canonical_email: ops@agents.ai
+    canonical_phone: "+15550210"
+messages:
+  - message_id: m1
+    timestamp: "2026-10-08T10:00:00Z"
+    channel: voice
+    sender_email: null
+    sender_phone: null
+    display_name: null
+    text: "Task coordination initiated for inventory sync."
+    true_identity_id: user_1
+    a2a_context:
+      agent_handle: agent_alpha
+      target_handle: agent_beta
+      task_id: task_401
+  - message_id: m2
+    timestamp: "2026-10-08T10:05:00Z"
+    channel: sms
+    sender_email: null
+    sender_phone: null
+    display_name: null
+    text: "Inventory sync acknowledged by target agent."
+    true_identity_id: user_1
+    a2a_context:
+      agent_handle: agent_beta
+      target_handle: agent_alpha
+      task_id: task_401
+  - message_id: m3
+    timestamp: "2026-10-08T10:10:00Z"
+    channel: email
+    sender_email: ops@agents.ai
+    sender_phone: "+15550210"
+    display_name: Agent Ops
+    text: "Inventory sync task 401 completed successfully."
+    true_identity_id: user_1
+    a2a_context:
+      agent_handle: agent_alpha
+      target_handle: agent_beta
+      task_id: task_401

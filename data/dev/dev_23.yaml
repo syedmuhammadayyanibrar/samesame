@@ -1,0 +1,49 @@
+scenario_id: dev_23
+title: Contact ID anchored multi-channel support
+ambiguity_type: name_only
+true_identities:
+  - identity_id: user_1
+    canonical_name: Samuel King
+    canonical_email: samuel.k@finance.org
+    canonical_phone: "+16175552301"
+  - identity_id: user_2
+    canonical_name: Diana Prince
+    canonical_email: diana.p@finance.org
+    canonical_phone: "+16175552302"
+messages:
+  - message_id: m1
+    timestamp: "2026-10-08T09:00:00Z"
+    channel: voice
+    sender_email: null
+    sender_phone: null
+    display_name: null
+    text: "Hi this is Samuel requesting financial account statement."
+    true_identity_id: user_1
+    contact_id: contact_samuel
+  - message_id: m2
+    timestamp: "2026-10-08T09:15:00Z"
+    channel: email
+    sender_email: samuel.k@finance.org
+    sender_phone: "+16175552301"
+    display_name: Samuel King
+    text: "Monthly statement request attached for Samuel King."
+    true_identity_id: user_1
+    contact_id: contact_samuel
+  - message_id: m3
+    timestamp: "2026-10-08T10:00:00Z"
+    channel: voice
+    sender_email: null
+    sender_phone: null
+    display_name: null
+    text: "Hello this is Diana asking about loan rates."
+    true_identity_id: user_2
+    contact_id: contact_diana
+  - message_id: m4
+    timestamp: "2026-10-08T10:20:00Z"
+    channel: email
+    sender_email: diana.p@finance.org
+    sender_phone: "+16175552302"
+    display_name: Diana Prince
+    text: "Loan application rate inquiry from Diana Prince."
+    true_identity_id: user_2
+    contact_id: contact_diana

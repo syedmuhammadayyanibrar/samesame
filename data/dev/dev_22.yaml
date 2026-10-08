@@ -1,0 +1,37 @@
+scenario_id: dev_22
+title: Mixed A2A agent dispatch and customer follow-up
+ambiguity_type: name_only
+true_identities:
+  - identity_id: user_1
+    canonical_name: Claire Vance
+    canonical_email: claire.v@agency.com
+    canonical_phone: "+14155552201"
+messages:
+  - message_id: m1
+    timestamp: "2026-10-08T11:00:00Z"
+    channel: email
+    sender_email: claire.v@agency.com
+    sender_phone: null
+    display_name: Claire Vance
+    text: "Dispatching autonomous logistics agent for package 772. Contact phone +14155552201."
+    true_identity_id: user_1
+  - message_id: m2
+    timestamp: "2026-10-08T11:15:00Z"
+    channel: voice
+    sender_email: null
+    sender_phone: null
+    display_name: null
+    text: "Package 772 status acknowledged by carrier agent."
+    true_identity_id: user_1
+    a2a_context:
+      agent_handle: dispatch_bot
+      target_handle: carrier_bot
+      task_id: task_772
+  - message_id: m3
+    timestamp: "2026-10-08T11:30:00Z"
+    channel: sms
+    sender_email: null
+    sender_phone: "+14155552201"
+    display_name: null
+    text: "Claire Vance confirming carrier receipt for package 772, email claire.v@agency.com."
+    true_identity_id: user_1

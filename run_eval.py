@@ -6,6 +6,7 @@ from stitch.agreement import compute_dataset_kappa
 from stitch.strategies.exact import ExactMatchStitcher
 from stitch.strategies.fuzzy import FuzzyMatchStitcher
 from stitch.strategies.embedding import EmbeddingMatchStitcher
+from stitch.strategies.composite import CompositeStitcher
 from stitch.evaluation import evaluate_scenarios, AggregatedEvaluationResult
 
 def run_annotator_agreement_check():
@@ -49,6 +50,9 @@ def print_evaluation_summary(res: AggregatedEvaluationResult, dataset_label: str
     print(f"Over-Splitting Rate:         {res.over_splitting_rate * 100:.2f}% ({res.total_over_split}/{res.total_identities} identities)")
     print(f"Over-Merging Rate:           {res.over_merging_rate * 100:.2f}% ({res.total_over_merged}/{res.total_predicted_clusters} clusters)")
     print(f"Average Stitching Inflation: {res.average_stitching_inflation:+.4f}")
+    print(f"Contact Resolution Accuracy: {res.contact_resolution_accuracy * 100:.2f}%")
+    print(f"Permission Block Precision:  {res.permission_blocked_precision * 100:.2f}%")
+    print(f"A2A Recall:                  {res.a2a_recall * 100:.2f}%")
     print(f"Dominant Failure Mode:       {res.dominant_failure_mode}")
     print("Failure Mode Breakdown:")
     for mode, count in res.failure_mode_counts.items():
@@ -69,7 +73,8 @@ def main():
     strategies = [
         ("Exact Match Baseline", ExactMatchStitcher()),
         ("Fuzzy Match Baseline", FuzzyMatchStitcher()),
-        ("Embedding Matcher (all-MiniLM-L6-v2)", EmbeddingMatchStitcher(similarity_threshold=0.60))
+        ("Embedding Matcher (all-MiniLM-L6-v2)", EmbeddingMatchStitcher(similarity_threshold=0.60)),
+        ("Composite Layered Stitcher", CompositeStitcher())
     ]
 
     print("=" * 60)

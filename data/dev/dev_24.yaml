@@ -1,0 +1,44 @@
+scenario_id: dev_24
+title: Blocked scammer caller on family line
+ambiguity_type: reused_phone
+permission_policy:
+  whitelist_emails:
+    - alicia.keys@secure.com
+  blacklist_emails: []
+  whitelist_phones: []
+  blacklist_phones:
+    - "+15550240"
+true_identities:
+  - identity_id: user_1
+    canonical_name: Alicia Keys
+    canonical_email: alicia.keys@secure.com
+    canonical_phone: "+15550240"
+  - identity_id: user_2
+    canonical_name: Unknown Scammer
+    canonical_email: null
+    canonical_phone: "+15550240"
+messages:
+  - message_id: m1
+    timestamp: "2026-10-08T14:00:00Z"
+    channel: email
+    sender_email: alicia.keys@secure.com
+    sender_phone: null
+    display_name: Alicia Keys
+    text: "Account update for Alicia Keys. Mobile on file is +15550240."
+    true_identity_id: user_1
+  - message_id: m2
+    timestamp: "2026-10-08T14:15:00Z"
+    channel: voice
+    sender_email: null
+    sender_phone: "+15550240"
+    display_name: null
+    text: "Urgent IRS warrant payment required immediately via gift card."
+    true_identity_id: user_2
+  - message_id: m3
+    timestamp: "2026-10-08T14:30:00Z"
+    channel: sms
+    sender_email: null
+    sender_phone: "+15550240"
+    display_name: null
+    text: "Claim your lottery prize now click suspicious link."
+    true_identity_id: user_2

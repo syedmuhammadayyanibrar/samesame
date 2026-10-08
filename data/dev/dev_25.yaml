@@ -1,0 +1,44 @@
+scenario_id: dev_25
+title: Whitelisted VIP executive correspondence
+ambiguity_type: shared_domain
+permission_policy:
+  whitelist_emails:
+    - ceo.vip@megacorp.com
+  blacklist_emails: []
+  whitelist_phones:
+    - "+12125552501"
+  blacklist_phones: []
+true_identities:
+  - identity_id: user_1
+    canonical_name: Victoria Sterling
+    canonical_email: ceo.vip@megacorp.com
+    canonical_phone: "+12125552501"
+  - identity_id: user_2
+    canonical_name: General Staff
+    canonical_email: staff@megacorp.com
+    canonical_phone: null
+messages:
+  - message_id: m1
+    timestamp: "2026-10-08T15:00:00Z"
+    channel: email
+    sender_email: ceo.vip@megacorp.com
+    sender_phone: null
+    display_name: Victoria Sterling
+    text: "Confidential board deck Q4 review for Megacorp executive committee."
+    true_identity_id: user_1
+  - message_id: m2
+    timestamp: "2026-10-08T15:20:00Z"
+    channel: sms
+    sender_email: null
+    sender_phone: "+12125552501"
+    display_name: null
+    text: "VIP CEO Victoria Sterling confirming board meeting schedule."
+    true_identity_id: user_1
+  - message_id: m3
+    timestamp: "2026-10-08T16:00:00Z"
+    channel: email
+    sender_email: staff@megacorp.com
+    sender_phone: null
+    display_name: General Staff
+    text: "Catering menu selection for tomorrow lunch break."
+    true_identity_id: user_2
