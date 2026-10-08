@@ -95,13 +95,24 @@ Repository Structure
 - stitch/strategies/memory.py: Contact memory citation bridge matcher.
 - stitch/strategies/composite.py: Ordered composite pipeline stitcher.
 - stitch/evaluation.py: Evaluation metrics, inflation, over-split/over-merge rates, failure analyzer.
+- server.py: FastAPI backend serving live interactive cross-channel stitching.
+- web/index.html: Interactive single-page studio with visual identity clustering.
 - run_eval.py: Evaluation runner script.
 - tests/test_stitchers.py: Pytest test suite covering all matchers and metrics (14/14 passing).
 
-Running the Pipeline
---------------------
+Running the Pipeline & Localhost Studio
+---------------------------------------
 Run test suite:
 python -m pytest tests
 
 Run complete evaluation benchmark:
 python run_eval.py
+
+Launch Interactive Studio on Localhost:
+python server.py
+# Or with uvicorn directly:
+# python -m uvicorn server:app --host 127.0.0.1 --port 8000
+
+Access the web interface at:
+http://localhost:8000 or http://127.0.0.1:8000
+

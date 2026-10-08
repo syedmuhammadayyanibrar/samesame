@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SameSame | Identity Stitching Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-hover: #1b2438;
+      --surface-border: #243048;
+      --border-subtle: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --accent-hover: #4f46e5;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --amber: #f59e0b;
+      --sky: #0ea5e9;
+      --purple: #a855f7;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    header {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      color: #34d399;
+      font-family: var(--font-mono);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.9); }
+    }
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 65px);
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 340px;
+      background: var(--surface);
+      border-right: 1px solid var(--surface-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .sidebar-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--surface-border);
+    }
+    .tabs-pill {
+      display: flex;
+      background: var(--bg);
+      padding: 4px;
+      border-radius: 8px;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .search-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--surface-border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text);
+      font-family: inherit;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .scenario-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .scenario-item {
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .scenario-item:hover {
+      background: var(--surface-hover);
+    }
+    .scenario-item.active {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+    .scenario-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .scenario-item-id {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .scenario-item-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tag-none { background: #334155; color: #cbd5e1; }
+    .tag-reused_phone { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .tag-shared_domain { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .tag-name_only { background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.3); }
+    .tag-a2a { background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+    .tag-permission { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-memory { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background: #0b0f19;
+    }
+    .control-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .active-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .active-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .active-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .controls-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    select.strategy-select {
+      background: var(--bg);
+      border: 1px solid var(--surface-border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    select.strategy-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+    .btn-secondary {
+      background: var(--surface-hover);
+      color: var(--text);
+      border: 1px solid var(--surface-border);
+    }
+    .btn-secondary:hover {
+      background: #232e44;
+    }
+
+    .metrics-bar {
+      padding: 16px 24px;
+      background: rgba(17, 24, 39, 0.4);
+      border-bottom: 1px solid var(--surface-border);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .metric-value {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .val-good { color: var(--emerald); }
+    .val-warn { color: var(--amber); }
+    .val-bad { color: var(--rose); }
+
+    .content-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .clusters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .cluster-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .cluster-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+    }
+    .cluster-card-header {
+      padding: 14px 16px;
+      background: rgba(30, 41, 59, 0.5);
+      border-bottom: 1px solid var(--surface-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .cluster-id-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      color: #fff;
+    }
+    .cluster-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .cluster-identifiers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .id-chip {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text-muted);
+      border: 1px solid var(--surface-border);
+    }
+    .cluster-card-body {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+    .msg-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--surface-border);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .msg-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .channel-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .channel-email { background: rgba(14, 165, 233, 0.2); color: #38bdf8; }
+    .channel-sms { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .channel-voice { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .channel-a2a { background: rgba(99, 102, 241, 0.2); color: #818cf8; }
+    .msg-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .msg-sender {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .msg-text {
+      font-size: 12px;
+      color: #e2e8f0;
+      line-height: 1.4;
+      background: rgba(0,0,0,0.2);
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+    .msg-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .badge-field {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+    .badge-true-id {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .unresolvable-banner {
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .unresolvable-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fda4af;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .unresolvable-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .unresolvable-chip {
+      background: rgba(244, 63, 94, 0.2);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fecdd3;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      width: 500px;
+      max-width: 90vw;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .form-control {
+      background: var(--bg);
+      border: 1px solid var(--surface-border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: var(--text);
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-row .form-group {
+      flex: 1;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo-badge">S</div>
+      <div>
+        <div class="brand-title">SameSame</div>
+        <div class="brand-subtitle">Cross-Channel Identity Stitching Studio</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-pill">
+        <div class="status-dot"></div>
+        <span>127.0.0.1:8000 LIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="tabs-pill">
+          <button class="tab-btn active" id="tabDev" onclick="switchDataset('dev')">Dev Set (25)</button>
+          <button class="tab-btn" id="tabTest" onclick="switchDataset('test')">Held-Out Test (10)</button>
+        </div>
+        <input type="text" id="searchScenario" class="search-input" placeholder="Search scenarios..." oninput="filterScenarios()">
+      </div>
+      <div class="scenario-list" id="scenarioList">
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="control-bar">
+        <div class="active-meta">
+          <div class="active-title">
+            <span id="activeScenarioTitle">Select a scenario</span>
+            <span id="activeAmbiguityTag" class="tag tag-none" style="display:none;"></span>
+          </div>
+          <div class="active-desc" id="activeScenarioDesc">
+            Choose a benchmark scenario from the left panel or create custom messages to test cross-channel linking.
+          </div>
+        </div>
+        <div class="controls-actions">
+          <select id="strategySelect" class="strategy-select" onchange="runStitch()">
+            <option value="composite" selected>Composite (Inkbox Layered)</option>
+            <option value="exact">Exact Match (Deterministic)</option>
+            <option value="fuzzy">Fuzzy Match (Domain/Name)</option>
+            <option value="embedding">Embedding Match (Neural)</option>
+            <option value="contact">Contact Resolution Layer</option>
+            <option value="permission">Permission-Aware Pre-filter</option>
+            <option value="a2a">A2A Task Matcher</option>
+          </select>
+          <button class="btn btn-secondary" onclick="openMessageModal()">+ Add Message</button>
+          <button class="btn btn-primary" onclick="runStitch()">⚡ Re-Stitch</button>
+        </div>
+      </div>
+
+      <div class="metrics-bar" id="metricsBar" style="display: none;">
+        <div class="metric-card">
+          <div class="metric-label">F1 Score</div>
+          <div class="metric-value" id="metricF1">-</div>
+          <div class="metric-sub" id="metricF1Sub">Harmonic mean</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Pairwise Precision</div>
+          <div class="metric-value" id="metricPrecision">-</div>
+          <div class="metric-sub" id="metricPrecisionSub">TP / (TP + FP)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Pairwise Recall</div>
+          <div class="metric-value" id="metricRecall">-</div>
+          <div class="metric-sub" id="metricRecallSub">TP / (TP + FN)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Over-Splitting</div>
+          <div class="metric-value" id="metricOverSplit">-</div>
+          <div class="metric-sub" id="metricOverSplitSub">Identities split</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Over-Merging</div>
+          <div class="metric-value" id="metricOverMerge">-</div>
+          <div class="metric-sub" id="metricOverMergeSub">Clusters merged</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Inflation</div>
+          <div class="metric-value" id="metricInflation">-</div>
+          <div class="metric-sub" id="metricInflationSub">Predicted - True</div>
+        </div>
+        <div class="metric-card" id="cardContactAcc" style="display:none;">
+          <div class="metric-label">Contact Accuracy</div>
+          <div class="metric-value" id="metricContactAcc">-</div>
+          <div class="metric-sub">Single contact/cluster</div>
+        </div>
+        <div class="metric-card" id="cardA2ARecall" style="display:none;">
+          <div class="metric-label">A2A Recall</div>
+          <div class="metric-value" id="metricA2ARecall">-</div>
+          <div class="metric-sub">Task & handle links</div>
+        </div>
+        <div class="metric-card" id="cardPermPrec" style="display:none;">
+          <div class="metric-label">Perm Blocked</div>
+          <div class="metric-value" id="metricPermPrec">-</div>
+          <div class="metric-sub">Blacklist precision</div>
+        </div>
+      </div>
+
+      <div class="content-body">
+        <div id="unresolvableSection" style="display:none;">
+          <div class="unresolvable-banner">
+            <div class="unresolvable-title">
+              <span>🚫 Permission Policy: Unresolvable / Isolated Messages</span>
+            </div>
+            <div class="unresolvable-list" id="unresolvableList"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-header">
+            <div class="section-title">
+              <span>Stitched Identity Clusters</span>
+              <span id="clusterCountBadge" class="tag tag-none">0 clusters</span>
+            </div>
+            <div id="runtimeBadge" style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);"></div>
+          </div>
+          <div class="clusters-grid" id="clustersContainer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="messageModal">
+    <div class="modal">
+      <div class="modal-title">Add Message to Current Thread</div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">Message ID</div>
+          <input type="text" id="newMsgId" class="form-control" value="msg_custom_01">
+        </div>
+        <div class="form-group">
+          <div class="form-label">Channel</div>
+          <select id="newChannel" class="form-control">
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+            <option value="voice">Voice</option>
+            <option value="a2a">A2A Agent</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">Display Name</div>
+          <input type="text" id="newName" class="form-control" placeholder="e.g. Alex Rivera">
+        </div>
+        <div class="form-group">
+          <div class="form-label">Contact ID (Optional)</div>
+          <input type="text" id="newContactId" class="form-control" placeholder="e.g. c_7701">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">Sender Email</div>
+          <input type="email" id="newEmail" class="form-control" placeholder="alex@example.com">
+        </div>
+        <div class="form-group">
+          <div class="form-label">Sender Phone</div>
+          <input type="tel" id="newPhone" class="form-control" placeholder="+1-555-0199">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">A2A Task ID</div>
+          <input type="text" id="newTaskId" class="form-control" placeholder="task_support_001">
+        </div>
+        <div class="form-group">
+          <div class="form-label">Agent Handle</div>
+          <input type="text" id="newAgentHandle" class="form-control" placeholder="agent_checkout">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Message Text Body</div>
+        <textarea id="newText" class="form-control" rows="3" placeholder="Hello, I wanted to follow up on my order..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeMessageModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitNewMessage()">Append Message</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allScenarios = [];
+    let currentDataset = 'dev';
+    let currentScenario = null;
+    let currentMessages = [];
+    let currentPermissionPolicy = null;
+
+    async function loadScenarios() {
+      try {
+        const res = await fetch('/api/scenarios');
+        allScenarios = await res.json();
+        renderScenarioList();
+        const first = allScenarios.find(s => s.type === currentDataset);
+        if (first) {
+          selectScenario(first.type, first.id);
+        }
+      } catch (err) {
+        console.error('Failed to load scenarios', err);
+      }
+    }
+
+    function switchDataset(type) {
+      currentDataset = type;
+      document.getElementById('tabDev').classList.toggle('active', type === 'dev');
+      document.getElementById('tabTest').classList.toggle('active', type === 'test');
+      renderScenarioList();
+      const first = allScenarios.find(s => s.type === type);
+      if (first) {
+        selectScenario(first.type, first.id);
+      }
+    }
+
+    function renderScenarioList() {
+      const listEl = document.getElementById('scenarioList');
+      const filter = document.getElementById('searchScenario').value.toLowerCase();
+      const filtered = allScenarios.filter(s => s.type === currentDataset && (
+        s.id.toLowerCase().includes(filter) ||
+        s.title.toLowerCase().includes(filter) ||
+        s.ambiguity_type.toLowerCase().includes(filter)
+      ));
+
+      listEl.innerHTML = '';
+      filtered.forEach(s => {
+        const item = document.createElement('div');
+        item.className = 'scenario-item' + (currentScenario && currentScenario.scenario_id === s.id ? ' active' : '');
+        item.onclick = () => selectScenario(s.type, s.id);
+
+        let tagClass = 'tag-none';
+        if (s.ambiguity_type.includes('phone')) tagClass = 'tag-reused_phone';
+        else if (s.ambiguity_type.includes('domain')) tagClass = 'tag-shared_domain';
+        else if (s.ambiguity_type.includes('name')) tagClass = 'tag-name_only';
+        else if (s.ambiguity_type.includes('a2a')) tagClass = 'tag-a2a';
+        else if (s.ambiguity_type.includes('permission')) tagClass = 'tag-permission';
+        else if (s.ambiguity_type.includes('memory')) tagClass = 'tag-memory';
+
+        item.innerHTML = `
+          <div class="scenario-item-top">
+            <span class="scenario-item-id">${s.id}</span>
+            <span class="tag ${tagClass}">${s.ambiguity_type}</span>
+          </div>
+          <div class="scenario-item-title">${s.title}</div>
+        `;
+        listEl.appendChild(item);
+      });
+    }
+
+    function filterScenarios() {
+      renderScenarioList();
+    }
+
+    async function selectScenario(type, id) {
+      try {
+        const res = await fetch(`/api/scenarios/${type}/${id}`);
+        currentScenario = await res.json();
+        currentMessages = JSON.parse(JSON.stringify(currentScenario.messages));
+        currentPermissionPolicy = currentScenario.permission_policy;
+
+        document.getElementById('activeScenarioTitle').textContent = `${currentScenario.scenario_id}: ${currentScenario.title}`;
+        const tag = document.getElementById('activeAmbiguityTag');
+        tag.style.display = 'inline-block';
+        tag.textContent = currentScenario.ambiguity_type;
+        tag.className = 'tag ' + getTagClass(currentScenario.ambiguity_type);
+
+        document.getElementById('activeScenarioDesc').textContent =
+          `Loaded ${currentMessages.length} messages across ${currentScenario.true_identities ? currentScenario.true_identities.length : '?'} ground-truth identities.`;
+
+        renderScenarioList();
+        runStitch();
+      } catch (err) {
+        console.error('Failed to load scenario', err);
+      }
+    }
+
+    function getTagClass(amb) {
+      if (!amb) return 'tag-none';
+      if (amb.includes('phone')) return 'tag-reused_phone';
+      if (amb.includes('domain')) return 'tag-shared_domain';
+      if (amb.includes('name')) return 'tag-name_only';
+      if (amb.includes('a2a')) return 'tag-a2a';
+      if (amb.includes('permission')) return 'tag-permission';
+      if (amb.includes('memory')) return 'tag-memory';
+      return 'tag-none';
+    }
+
+    async function runStitch() {
+      if (!currentMessages || currentMessages.length === 0) return;
+      const strategy = document.getElementById('strategySelect').value;
+
+      try {
+        const payload = {
+          strategy: strategy,
+          messages: currentMessages,
+          permission_policy: currentPermissionPolicy
+        };
+
+        const res = await fetch('/api/stitch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        renderResults(data);
+      } catch (err) {
+        console.error('Stitching failed', err);
+      }
+    }
+
+    function renderResults(data) {
+      document.getElementById('runtimeBadge').textContent = `${data.elapsed_ms} ms`;
+      document.getElementById('clusterCountBadge').textContent = `${data.cluster_count} clusters`;
+
+      const unresSec = document.getElementById('unresolvableSection');
+      const unresList = document.getElementById('unresolvableList');
+      if (data.unresolvable_ids && data.unresolvable_ids.length > 0) {
+        unresSec.style.display = 'block';
+        unresList.innerHTML = data.unresolvable_ids.map(id => `<div class="unresolvable-chip">🔒 ${id} (Rejected)</div>`).join('');
+      } else {
+        unresSec.style.display = 'none';
+        unresList.innerHTML = '';
+      }
+
+      const metricsBar = document.getElementById('metricsBar');
+      if (data.metrics) {
+        metricsBar.style.display = 'grid';
+        const m = data.metrics;
+        document.getElementById('metricF1').textContent = (m.f1 * 100).toFixed(1) + '%';
+        document.getElementById('metricPrecision').textContent = (m.precision * 100).toFixed(1) + '%';
+        document.getElementById('metricPrecisionSub').textContent = `${m.tp} TP / ${m.fp} FP`;
+        document.getElementById('metricRecall').textContent = (m.recall * 100).toFixed(1) + '%';
+        document.getElementById('metricRecallSub').textContent = `${m.tp} TP / ${m.fn} FN`;
+        document.getElementById('metricOverSplit').textContent = (m.over_splitting_rate * 100).toFixed(1) + '%';
+        document.getElementById('metricOverMerge').textContent = (m.over_merging_rate * 100).toFixed(1) + '%';
+        document.getElementById('metricInflation').textContent = (m.stitching_inflation >= 0 ? '+' : '') + m.stitching_inflation.toFixed(2);
+
+        colorize('metricF1', m.f1 >= 0.7 ? 'val-good' : (m.f1 >= 0.4 ? 'val-warn' : 'val-bad'));
+        colorize('metricPrecision', m.precision >= 0.8 ? 'val-good' : (m.precision >= 0.5 ? 'val-warn' : 'val-bad'));
+        colorize('metricRecall', m.recall >= 0.7 ? 'val-good' : (m.recall >= 0.4 ? 'val-warn' : 'val-bad'));
+
+        const cardContact = document.getElementById('cardContactAcc');
+        if (m.contact_resolution_accuracy !== undefined) {
+          cardContact.style.display = 'flex';
+          document.getElementById('metricContactAcc').textContent = (m.contact_resolution_accuracy * 100).toFixed(1) + '%';
+          colorize('metricContactAcc', m.contact_resolution_accuracy >= 0.8 ? 'val-good' : 'val-warn');
+        } else {
+          cardContact.style.display = 'none';
+        }
+
+        const cardA2A = document.getElementById('cardA2ARecall');
+        if (m.a2a_recall !== undefined) {
+          cardA2A.style.display = 'flex';
+          document.getElementById('metricA2ARecall').textContent = (m.a2a_recall * 100).toFixed(1) + '%';
+          colorize('metricA2ARecall', m.a2a_recall >= 0.8 ? 'val-good' : 'val-warn');
+        } else {
+          cardA2A.style.display = 'none';
+        }
+
+        const cardPerm = document.getElementById('cardPermPrec');
+        if (m.permission_blocked_precision !== undefined) {
+          cardPerm.style.display = 'flex';
+          document.getElementById('metricPermPrec').textContent = (m.permission_blocked_precision * 100).toFixed(1) + '%';
+          colorize('metricPermPrec', m.permission_blocked_precision >= 0.8 ? 'val-good' : 'val-warn');
+        } else {
+          cardPerm.style.display = 'none';
+        }
+      } else {
+        metricsBar.style.display = 'none';
+      }
+
+      const container = document.getElementById('clustersContainer');
+      container.innerHTML = '';
+
+      data.clusters.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'cluster-card';
+
+        const chips = [];
+        c.inferred_emails.forEach(e => chips.push(`<span class="id-chip">✉ ${e}</span>`));
+        c.inferred_phones.forEach(p => chips.push(`<span class="id-chip">📞 ${p}</span>`));
+        c.inferred_contacts.forEach(cid => chips.push(`<span class="id-chip">👤 ${cid}</span>`));
+
+        const msgsHtml = c.messages.map(m => {
+          let chanClass = 'channel-email';
+          if (m.channel === 'sms') chanClass = 'channel-sms';
+          else if (m.channel === 'voice') chanClass = 'channel-voice';
+          else if (m.channel === 'a2a') chanClass = 'channel-a2a';
+
+          const badges = [];
+          if (m.contact_id) badges.push(`<span class="badge-field">contact:${m.contact_id}</span>`);
+          if (m.a2a_context && m.a2a_context.task_id) {
+            badges.push(`<span class="badge-field">task:${m.a2a_context.task_id}</span>`);
+            badges.push(`<span class="badge-field">${m.a2a_context.agent_handle}→${m.a2a_context.target_handle}</span>`);
+          }
+          if (m.true_identity_id) {
+            badges.push(`<span class="badge-true-id">true:${m.true_identity_id}</span>`);
+          }
+
+          return `
+            <div class="msg-item">
+              <div class="msg-top">
+                <span class="channel-pill ${chanClass}">${m.channel}</span>
+                <span class="msg-id">${m.message_id}</span>
+              </div>
+              <div class="msg-sender">
+                <span>${m.display_name || 'Anonymous'}</span>
+                <span>${m.sender_email || ''}</span>
+                <span>${m.sender_phone || ''}</span>
+              </div>
+              <div class="msg-text">${escapeHtml(m.text)}</div>
+              ${badges.length ? `<div class="msg-badges">${badges.join('')}</div>` : ''}
+            </div>
+          `;
+        }).join('');
+
+        card.innerHTML = `
+          <div class="cluster-card-header">
+            <div class="cluster-id-badge">
+              <div class="avatar-circle">${c.cluster_id}</div>
+              <div>
+                <div class="cluster-name">${escapeHtml(c.canonical_name)}</div>
+                <div class="cluster-identifiers">${chips.join('')}</div>
+              </div>
+            </div>
+            <span class="tag tag-none">${c.message_count} msgs</span>
+          </div>
+          <div class="cluster-card-body">
+            ${msgsHtml}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function colorize(id, cls) {
+      const el = document.getElementById(id);
+      el.className = 'metric-value ' + cls;
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function openMessageModal() {
+      document.getElementById('newMsgId').value = `msg_custom_${currentMessages.length + 1}`;
+      document.getElementById('messageModal').classList.add('open');
+    }
+
+    function closeMessageModal() {
+      document.getElementById('messageModal').classList.remove('open');
+    }
+
+    function submitNewMessage() {
+      const msgId = document.getElementById('newMsgId').value.trim();
+      const channel = document.getElementById('newChannel').value;
+      const name = document.getElementById('newName').value.trim();
+      const email = document.getElementById('newEmail').value.trim();
+      const phone = document.getElementById('newPhone').value.trim();
+      const contactId = document.getElementById('newContactId').value.trim();
+      const taskId = document.getElementById('newTaskId').value.trim();
+      const agentHandle = document.getElementById('newAgentHandle').value.trim();
+      const text = document.getElementById('newText').value.trim();
+
+      let a2a = null;
+      if (taskId || agentHandle) {
+        a2a = {
+          task_id: taskId,
+          agent_handle: agentHandle,
+          target_handle: 'agent_target'
+        };
+      }
+
+      const newMsg = {
+        message_id: msgId,
+        timestamp: new Date().toISOString(),
+        channel: channel,
+        display_name: name || null,
+        sender_email: email || null,
+        sender_phone: phone || null,
+        contact_id: contactId || null,
+        a2a_context: a2a,
+        text: text || "Message content"
+      };
+
+      currentMessages.push(newMsg);
+      closeMessageModal();
+      runStitch();
+    }
+
+    window.onload = loadScenarios;
+  </script>
+</body>
+</html>
