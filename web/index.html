@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SameSame — Identity Stitching Studio</title>
+  <title>SameSame — Evidence Ledger</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
       --mauve: #845162;
       --rose: #E3B8B1;
       --blush: #FFE3DC;
+      --card-white: #FFFFFF;
 
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -30,7 +31,7 @@
       height: 100vh;
       max-height: 100vh;
       background-color: var(--ink);
-      color: var(--blush);
+      color: var(--ink);
       font-family: var(--font-sans);
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
@@ -41,21 +42,10 @@
       flex-direction: column;
     }
 
-    a, .link-style {
-      color: var(--rose);
-      text-decoration: none;
-      transition: color 150ms ease;
-      cursor: pointer;
-    }
-
-    a:hover, .link-style:hover {
-      color: var(--blush);
-    }
-
     header {
       height: 56px;
-      background-color: var(--plum-900);
-      border-bottom: 1px solid rgba(132, 81, 98, 0.35);
+      background-color: var(--ink);
+      border-bottom: 1px solid rgba(82, 44, 93, 0.4);
       padding: 0 24px;
       display: flex;
       justify-content: space-between;
@@ -67,21 +57,21 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .brand-mark {
       width: 26px;
       height: 26px;
       border-radius: 6px;
-      background-color: var(--plum-700);
-      border: 1px solid rgba(132, 81, 98, 0.4);
+      background-color: var(--plum-900);
+      border: 1px solid var(--mauve);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 13px;
-      color: var(--rose);
+      color: var(--blush);
     }
 
     .brand-title {
@@ -94,12 +84,11 @@
     .brand-sep {
       color: var(--mauve);
       font-size: 13px;
-      margin: 0 4px;
     }
 
     .brand-subtitle {
       font-size: 13px;
-      color: rgba(227, 184, 177, 0.7);
+      color: rgba(255, 227, 220, 0.7);
       font-weight: 400;
     }
 
@@ -108,7 +97,7 @@
       align-items: center;
       gap: 8px;
       font-size: 12px;
-      color: rgba(227, 184, 177, 0.7);
+      color: rgba(227, 184, 177, 0.75);
       font-family: var(--font-mono);
     }
 
@@ -125,7 +114,6 @@
       height: calc(100vh - 56px);
       max-height: calc(100vh - 56px);
       overflow: hidden;
-      background-color: var(--ink);
     }
 
     .sidebar {
@@ -151,7 +139,7 @@
 
     .segmented-control {
       display: flex;
-      background-color: rgba(21, 0, 22, 0.4);
+      background-color: var(--ink);
       border: 1px solid rgba(132, 81, 98, 0.35);
       border-radius: 8px;
       padding: 2px;
@@ -162,7 +150,7 @@
       flex: 1;
       border: none;
       background: transparent;
-      color: rgba(227, 184, 177, 0.7);
+      color: rgba(255, 227, 220, 0.7);
       padding: 6px 10px;
       border-radius: 6px;
       font-size: 12px;
@@ -184,24 +172,24 @@
 
     .search-input {
       width: 100%;
-      background-color: rgba(82, 44, 93, 0.4);
-      border: 1px solid rgba(132, 81, 98, 0.3);
+      background-color: rgba(82, 44, 93, 0.35);
+      border: 1px solid rgba(132, 81, 98, 0.4);
       border-radius: 8px;
       padding: 8px 12px;
       font-size: 13px;
       color: var(--blush);
       font-family: var(--font-sans);
-      transition: border-color 150ms ease, box-shadow 150ms ease;
+      transition: border-color 150ms ease;
     }
 
     .search-input::placeholder {
-      color: rgba(132, 81, 98, 0.85);
+      color: rgba(227, 184, 177, 0.5);
     }
 
     .search-input:focus {
       outline: none;
       border-color: var(--rose);
-      box-shadow: 0 0 0 2px rgba(227, 184, 177, 0.25);
+      box-shadow: 0 0 0 2px rgba(227, 184, 177, 0.2);
     }
 
     .scenario-list {
@@ -218,28 +206,19 @@
       width: 6px;
     }
 
-    .scenario-list::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
     .scenario-list::-webkit-scrollbar-thumb {
       background-color: rgba(132, 81, 98, 0.4);
       border-radius: 3px;
     }
 
-    .scenario-list::-webkit-scrollbar-thumb:hover {
-      background-color: var(--rose);
-    }
-
     .scenario-row {
       padding: 12px 16px;
-      border-bottom: 1px solid rgba(132, 81, 98, 0.2);
       border-left: 3px solid transparent;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       gap: 3px;
-      transition: background-color 150ms ease, border-color 150ms ease;
+      transition: background-color 150ms ease;
     }
 
     .scenario-row:hover {
@@ -265,54 +244,56 @@
     }
 
     .scenario-title {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
-      color: var(--blush);
+      color: rgba(255, 227, 220, 0.85);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    .scenario-row.active .scenario-title {
+      color: var(--blush);
+      font-weight: 600;
+    }
+
     .scenario-type-label {
-      font-size: 11px;
-      color: var(--mauve);
+      font-size: 12px;
+      color: rgba(227, 184, 177, 0.6);
       padding-left: 20px;
     }
 
     .scenario-row.active .scenario-type-label {
-      color: rgba(227, 184, 177, 0.8);
+      color: rgba(227, 184, 177, 0.85);
     }
 
-    .main-panel {
+    .main-canvas {
       flex: 1;
       height: 100%;
       min-height: 0;
       overflow-y: scroll;
       overflow-x: hidden;
-      background-color: var(--ink);
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+      background-color: var(--blush);
+      padding: 36px 48px;
       scrollbar-width: thin;
-      scrollbar-color: rgba(132, 81, 98, 0.4) transparent;
+      scrollbar-color: var(--rose) transparent;
     }
 
-    .main-panel::-webkit-scrollbar {
+    .main-canvas::-webkit-scrollbar {
       width: 6px;
     }
 
-    .main-panel::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .main-panel::-webkit-scrollbar-thumb {
-      background-color: rgba(132, 81, 98, 0.4);
+    .main-canvas::-webkit-scrollbar-thumb {
+      background-color: var(--rose);
       border-radius: 3px;
     }
 
-    .main-panel::-webkit-scrollbar-thumb:hover {
-      background-color: var(--rose);
+    .content-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
     }
 
     .header-bar {
@@ -326,7 +307,7 @@
     .title-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .title-row {
@@ -338,8 +319,8 @@
 
     .page-title {
       font-size: 26px;
-      font-weight: 600;
-      color: var(--blush);
+      font-weight: 700;
+      color: var(--ink);
       letter-spacing: -0.02em;
       line-height: 1.2;
     }
@@ -347,19 +328,40 @@
     .type-inline {
       font-size: 13px;
       color: var(--mauve);
-      font-weight: 400;
+      font-weight: 500;
     }
 
     .type-inline::before {
       content: "·";
-      margin-right: 10px;
+      margin-right: 8px;
       color: var(--mauve);
     }
 
     .page-subtitle {
       font-size: 14px;
-      color: rgba(227, 184, 177, 0.7);
-      line-height: 1.5;
+      color: var(--mauve);
+      line-height: 1.4;
+    }
+
+    .truth-legend {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--mauve);
+    }
+
+    .truth-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .truth-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
     }
 
     .actions-group {
@@ -380,31 +382,30 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--mauve);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     select.strategy-select {
       height: 40px;
-      background-color: var(--plum-900);
-      border: 1px solid rgba(132, 81, 98, 0.4);
+      background-color: var(--card-white);
+      border: 1px solid var(--rose);
       border-radius: 8px;
-      color: var(--blush);
+      color: var(--ink);
       font-size: 13px;
       font-family: var(--font-sans);
       padding: 0 12px;
       cursor: pointer;
-      transition: border-color 150ms ease, box-shadow 150ms ease;
+      box-shadow: 0 1px 2px rgba(21,0,22,0.06);
     }
 
     select.strategy-select:focus {
-      outline: none;
-      border-color: var(--rose);
-      box-shadow: 0 0 0 2px rgba(227, 184, 177, 0.25);
+      outline: 2px solid var(--plum-700);
+      outline-offset: 1px;
     }
 
     .btn {
       height: 40px;
-      padding: 0 16px;
+      padding: 0 18px;
       border-radius: 8px;
       font-size: 13px;
       font-family: var(--font-sans);
@@ -416,188 +417,102 @@
       transition: all 150ms ease;
     }
 
-    .btn:focus-visible {
-      outline: 2px solid var(--rose);
-      outline-offset: 2px;
-    }
-
     .btn-primary {
-      background-color: var(--rose);
-      color: var(--ink);
+      background-color: var(--plum-700);
+      color: var(--blush);
       border: none;
       font-weight: 600;
+      box-shadow: 0 1px 3px rgba(21,0,22,0.12);
     }
 
     .btn-primary:hover {
-      filter: brightness(1.08);
+      background-color: var(--plum-900);
       transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background-color: transparent;
-      color: var(--blush);
-      border: 1px solid var(--mauve);
+      background-color: var(--card-white);
+      color: var(--ink);
+      border: 1px solid var(--rose);
       font-weight: 500;
+      box-shadow: 0 1px 2px rgba(21,0,22,0.06);
     }
 
     .btn-secondary:hover {
-      background-color: rgba(82, 44, 93, 0.25);
-      border-color: var(--rose);
+      background-color: rgba(255, 255, 255, 0.9);
+      border-color: var(--mauve);
     }
 
-    .metrics-section {
-      display: grid;
-      grid-template-columns: 280px 1fr 1.3fr;
-      gap: 16px;
+    .metrics-band {
+      background-color: var(--card-white);
+      border: 1px solid var(--rose);
+      border-radius: 8px;
+      padding: 22px 28px;
+      box-shadow: 0 1px 3px rgba(21,0,22,0.06);
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 1200px) {
-      .metrics-section {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .hero-metric-card {
-      background-color: var(--plum-900);
-      border: 1px solid rgba(132, 81, 98, 0.35);
-      border-radius: 10px;
-      padding: 24px;
+    .hero-metric-col {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
+      gap: 4px;
+      min-width: 170px;
+      padding-right: 32px;
+      border-right: 1px solid var(--rose);
     }
 
-    .overline-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--mauve);
-      font-weight: 600;
-    }
-
-    .hero-metric-value {
-      font-size: 52px;
-      font-weight: 600;
-      color: var(--blush);
-      line-height: 1.1;
+    .hero-metric-val {
+      font-size: 60px;
+      font-weight: 700;
+      color: var(--plum-700);
+      line-height: 1;
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.03em;
     }
 
-    .progress-track {
+    .hero-progress-track {
       width: 100%;
       height: 4px;
-      background-color: var(--ink);
+      background-color: rgba(227, 184, 177, 0.35);
       border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background-color: var(--rose);
-      width: 0%;
-      transition: width 300ms ease-out;
-    }
-
-    .hero-metric-caption {
-      font-size: 12px;
-      color: rgba(227, 184, 177, 0.7);
-      line-height: 1.4;
-    }
-
-    .metric-group-card {
-      background-color: var(--plum-900);
-      border: 1px solid rgba(132, 81, 98, 0.35);
-      border-radius: 10px;
-      padding: 20px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .metric-group-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .metric-columns {
-      display: flex;
-      align-items: stretch;
-      flex: 1;
-    }
-
-    .metric-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      padding: 0 16px;
-    }
-
-    .metric-col:first-child {
-      padding-left: 0;
-    }
-
-    .metric-col:last-child {
-      padding-right: 0;
-    }
-
-    .col-divider {
-      width: 1px;
-      background-color: rgba(132, 81, 98, 0.3);
-      flex-shrink: 0;
-    }
-
-    .sub-metric-val {
-      font-size: 26px;
-      font-weight: 600;
-      color: var(--blush);
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-
-    .sub-metric-caption {
-      font-size: 12px;
-      color: rgba(227, 184, 177, 0.6);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .sub-indicator {
-      width: 100%;
-      height: 2px;
-      background-color: var(--ink);
-      border-radius: 1px;
       margin-top: 6px;
       overflow: hidden;
     }
 
-    .sub-indicator-fill {
+    .hero-progress-fill {
       height: 100%;
-      background-color: var(--rose);
+      background-color: var(--plum-700);
       width: 0%;
       transition: width 300ms ease-out;
     }
 
-    .integrity-section {
-      background-color: rgba(41, 16, 74, 0.5);
-      border: 1px solid rgba(132, 81, 98, 0.25);
-      border-radius: 10px;
-      padding: 16px 24px;
-      display: flex;
-      gap: 24px;
-      align-items: center;
+    .sub-metrics-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px 28px;
     }
 
-    .integrity-item {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
+    @media (max-width: 900px) {
+      .sub-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-metric-col {
+        border-right: none;
+        padding-right: 0;
+      }
     }
 
-    .integrity-title {
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .metric-overline {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -605,17 +520,18 @@
       font-weight: 600;
     }
 
-    .integrity-val {
-      font-size: 14px;
+    .metric-value-text {
+      font-size: 22px;
       font-weight: 600;
-      color: var(--blush);
+      color: var(--plum-700);
       font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
     }
 
     .clusters-section {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     .section-title-row {
@@ -625,52 +541,48 @@
     }
 
     .section-heading {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--blush);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
       letter-spacing: -0.01em;
     }
 
     .section-meta {
       font-size: 12px;
-      color: rgba(227, 184, 177, 0.65);
+      color: var(--mauve);
       font-family: var(--font-mono);
     }
 
-    .clusters-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
-      gap: 16px;
-    }
-
-    @media (max-width: 1100px) {
-      .clusters-grid {
-        grid-template-columns: 1fr;
-      }
+    .clusters-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     .cluster-card {
-      background-color: rgba(41, 16, 74, 0.6);
-      border: 1px solid rgba(132, 81, 98, 0.3);
-      border-radius: 10px;
+      background-color: var(--card-white);
+      border: 1px solid var(--rose);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(21,0,22,0.06);
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    .cluster-card-header {
+    .cluster-header {
       padding: 16px 20px;
-      border-bottom: 1px solid rgba(132, 81, 98, 0.25);
+      background-color: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--rose);
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
+      align-items: center;
+      gap: 16px;
     }
 
-    .cluster-identity-wrap {
+    .cluster-header-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .cluster-avatar {
@@ -678,150 +590,135 @@
       height: 28px;
       border-radius: 50%;
       background-color: var(--plum-700);
-      border: 1px solid rgba(132, 81, 98, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--blush);
       flex-shrink: 0;
     }
 
-    .cluster-name-block {
+    .cluster-title-wrap {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .cluster-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--blush);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .cluster-tokens {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-      margin-top: 4px;
-    }
-
-    .contact-token {
       font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--rose);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .contact-token-icon {
+      font-size: 13px;
       color: var(--mauve);
-      font-style: normal;
     }
 
     .cluster-msg-count {
-      font-size: 12px;
-      color: rgba(227, 184, 177, 0.7);
+      font-size: 13px;
+      color: var(--mauve);
+      font-weight: 500;
       flex-shrink: 0;
     }
 
-    .cluster-messages-body {
+    .ledger-table {
       display: flex;
       flex-direction: column;
-      max-height: 420px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(132, 81, 98, 0.3) transparent;
     }
 
-    .cluster-messages-body::-webkit-scrollbar {
-      width: 5px;
+    .msg-ledger-row {
+      display: grid;
+      grid-template-columns: 4px 32px 180px 1fr 60px;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--rose);
+      transition: background-color 150ms ease;
     }
 
-    .cluster-messages-body::-webkit-scrollbar-thumb {
-      background-color: rgba(132, 81, 98, 0.3);
-      border-radius: 2px;
-    }
-
-    .msg-row {
-      padding: 14px 20px;
-      border-bottom: 1px solid rgba(132, 81, 98, 0.15);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .msg-row:last-child {
+    .msg-ledger-row:last-child {
       border-bottom: none;
     }
 
-    .msg-row-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
+    .msg-ledger-row.wrong-merge {
+      background-color: rgba(132, 81, 98, 0.1);
     }
 
-    .msg-channel-tag {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--rose);
-      text-transform: capitalize;
+    .truth-bar {
+      width: 4px;
+      height: 28px;
+      border-radius: 2px;
     }
 
-    .msg-id-text {
-      font-size: 11px;
-      font-family: var(--font-mono);
-      color: var(--mauve);
-    }
-
-    .msg-sender-line {
-      font-size: 12px;
-      color: rgba(227, 184, 177, 0.6);
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .msg-body-text {
-      font-size: 13px;
-      color: var(--blush);
-      line-height: 1.5;
-    }
-
-    .msg-footnote {
+    .channel-cell {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 11px;
-      font-family: var(--font-mono);
+      justify-content: center;
+      font-size: 14px;
       color: var(--mauve);
-      margin-top: 2px;
     }
 
-    .msg-mismatch {
-      border-left: 3px solid var(--rose);
-      padding-left: 17px;
+    .sender-cell {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--mauve);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .unresolvable-panel {
-      background-color: var(--plum-900);
-      border: 1px solid rgba(132, 81, 98, 0.35);
-      border-radius: 10px;
+    .body-cell {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wrong-merge-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--plum-700);
+      background-color: #FFFFFF;
+      border: 1px solid var(--mauve);
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .id-cell {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--mauve);
+      text-align: right;
+    }
+
+    .unresolvable-banner {
+      background-color: var(--card-white);
+      border: 1px solid var(--rose);
+      border-radius: 8px;
       padding: 16px 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
+      box-shadow: 0 1px 2px rgba(21,0,22,0.06);
     }
 
     .unresolvable-title {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--rose);
-      font-weight: 600;
+      color: var(--mauve);
+      font-weight: 700;
     }
 
     .unresolvable-items {
@@ -829,8 +726,8 @@
       flex-wrap: wrap;
       gap: 12px;
       font-family: var(--font-mono);
-      font-size: 12px;
-      color: rgba(227, 184, 177, 0.8);
+      font-size: 13px;
+      color: var(--plum-700);
     }
 
     .modal-backdrop {
@@ -840,7 +737,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(21, 0, 22, 0.8);
+      background-color: rgba(21, 0, 22, 0.7);
       backdrop-filter: blur(4px);
       z-index: 100;
       align-items: center;
@@ -854,7 +751,7 @@
     .modal-card {
       background-color: var(--plum-900);
       border: 1px solid rgba(132, 81, 98, 0.4);
-      border-radius: 10px;
+      border-radius: 8px;
       width: 480px;
       max-width: 90vw;
       padding: 24px;
@@ -862,6 +759,7 @@
       flex-direction: column;
       gap: 16px;
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      color: var(--blush);
     }
 
     .modal-title {
@@ -880,19 +778,18 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--mauve);
+      color: rgba(227, 184, 177, 0.8);
       font-weight: 600;
     }
 
     .form-input {
       background-color: rgba(82, 44, 93, 0.4);
-      border: 1px solid rgba(132, 81, 98, 0.35);
+      border: 1px solid rgba(132, 81, 98, 0.4);
       border-radius: 8px;
       padding: 8px 12px;
       color: var(--blush);
       font-size: 13px;
       font-family: var(--font-sans);
-      transition: border-color 150ms ease;
     }
 
     .form-input:focus {
@@ -924,7 +821,7 @@
       <div class="brand-mark">S</div>
       <div class="brand-title">SameSame</div>
       <span class="brand-sep">/</span>
-      <div class="brand-subtitle">Identity Stitching Studio</div>
+      <div class="brand-subtitle">Evidence Ledger</div>
     </div>
     <div class="header-right">
       <div class="status-dot"></div>
@@ -944,121 +841,85 @@
       <div class="scenario-list" id="scenarioList"></div>
     </div>
 
-    <div class="main-panel">
-      <div class="header-bar">
-        <div class="title-group">
-          <div class="title-row">
-            <h1 class="page-title" id="activeScenarioTitle">Select a scenario</h1>
-            <span class="type-inline" id="activeAmbiguityText" style="display:none;"></span>
-          </div>
-          <div class="page-subtitle" id="activeScenarioSubtitle">
-            Choose a benchmark scenario from the sidebar or add messages to test linking.
-          </div>
-        </div>
-        <div class="actions-group">
-          <div class="field-wrapper">
-            <label class="field-label" for="strategySelect">Strategy</label>
-            <select id="strategySelect" class="strategy-select" onchange="runStitch()">
-              <option value="composite" selected>Composite (Inkbox Layered)</option>
-              <option value="exact">Exact match baseline</option>
-              <option value="fuzzy">Fuzzy match baseline</option>
-              <option value="embedding">Sentence embedding</option>
-              <option value="contact">Contact resolution</option>
-              <option value="permission">Permission pre-filter</option>
-              <option value="a2a">A2A task linking</option>
-            </select>
-          </div>
-          <button class="btn btn-secondary" onclick="openMessageModal()">Add message</button>
-          <button class="btn btn-primary" onclick="runStitch()">Re-Stitch</button>
-        </div>
-      </div>
-
-      <div class="metrics-section" id="metricsSection" style="display: none;">
-        <div class="hero-metric-card">
-          <div class="overline-label">F1 score</div>
-          <div class="hero-metric-value" id="metricF1">—</div>
-          <div>
-            <div class="progress-track">
-              <div class="progress-fill" id="metricF1Bar"></div>
+    <div class="main-canvas">
+      <div class="content-container">
+        <div class="header-bar">
+          <div class="title-group">
+            <div class="title-row">
+              <h1 class="page-title" id="activeScenarioTitle">Select a scenario</h1>
+              <span class="type-inline" id="activeAmbiguityText" style="display:none;"></span>
             </div>
-            <div class="hero-metric-caption" style="margin-top: 8px;">Harmonic mean of precision and recall</div>
+            <div class="page-subtitle" id="activeScenarioSubtitle">
+              Choose a scenario from the sidebar to inspect linking decisions.
+            </div>
+            <div class="truth-legend" id="truthLegend"></div>
+          </div>
+          <div class="actions-group">
+            <div class="field-wrapper">
+              <label class="field-label" for="strategySelect">Strategy</label>
+              <select id="strategySelect" class="strategy-select" onchange="runStitch()">
+                <option value="composite" selected>Composite (Inkbox Layered)</option>
+                <option value="exact">Exact match baseline</option>
+                <option value="fuzzy">Fuzzy match baseline</option>
+                <option value="embedding">Sentence embedding</option>
+                <option value="contact">Contact resolution</option>
+                <option value="permission">Permission pre-filter</option>
+                <option value="a2a">A2A task linking</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary" onclick="openMessageModal()">Add message</button>
+            <button class="btn btn-primary" onclick="runStitch()">Re-Stitch</button>
           </div>
         </div>
 
-        <div class="metric-group-card">
-          <div class="metric-group-header">
-            <span class="overline-label">Pairwise</span>
-          </div>
-          <div class="metric-columns">
-            <div class="metric-col">
-              <span class="overline-label">Precision</span>
-              <div class="sub-metric-val" id="metricPrecision">—</div>
-              <div class="sub-metric-caption" id="metricPrecisionSub">0 TP · 0 FP</div>
-              <div class="sub-indicator"><div class="sub-indicator-fill" id="metricPrecisionBar"></div></div>
+        <div class="metrics-band" id="metricsBand" style="display: none;">
+          <div class="hero-metric-col">
+            <span class="metric-overline">F1 score</span>
+            <div class="hero-metric-val" id="metricF1">—</div>
+            <div class="hero-progress-track">
+              <div class="hero-progress-fill" id="metricF1Bar"></div>
             </div>
-            <div class="col-divider"></div>
-            <div class="metric-col">
-              <span class="overline-label">Recall</span>
-              <div class="sub-metric-val" id="metricRecall">—</div>
-              <div class="sub-metric-caption" id="metricRecallSub">0 TP · 0 FN</div>
-              <div class="sub-indicator"><div class="sub-indicator-fill" id="metricRecallBar"></div></div>
+          </div>
+          <div class="sub-metrics-grid">
+            <div class="metric-item">
+              <span class="metric-overline">Precision</span>
+              <div class="metric-value-text" id="metricPrecision">—</div>
+            </div>
+            <div class="metric-item">
+              <span class="metric-overline">Recall</span>
+              <div class="metric-value-text" id="metricRecall">—</div>
+            </div>
+            <div class="metric-item">
+              <span class="metric-overline">Over-splitting</span>
+              <div class="metric-value-text" id="metricOverSplit">—</div>
+            </div>
+            <div class="metric-item">
+              <span class="metric-overline">Over-merging</span>
+              <div class="metric-value-text" id="metricOverMerge">—</div>
+            </div>
+            <div class="metric-item">
+              <span class="metric-overline">Inflation</span>
+              <div class="metric-value-text" id="metricInflation">—</div>
+            </div>
+            <div class="metric-item" id="integrityA2AItem">
+              <span class="metric-overline">A2A recall</span>
+              <div class="metric-value-text" id="metricA2A">—</div>
             </div>
           </div>
         </div>
 
-        <div class="metric-group-card">
-          <div class="metric-group-header">
-            <span class="overline-label">Clustering errors</span>
+        <div class="unresolvable-banner" id="unresolvablePanel" style="display: none;">
+          <div class="unresolvable-title">Isolated messages (Permission policy)</div>
+          <div class="unresolvable-items" id="unresolvableList"></div>
+        </div>
+
+        <div class="clusters-section">
+          <div class="section-title-row">
+            <div class="section-heading">Stitched identity clusters</div>
+            <div class="section-meta" id="clustersMeta">0 clusters · 0.00 ms</div>
           </div>
-          <div class="metric-columns">
-            <div class="metric-col">
-              <span class="overline-label">Over-splitting</span>
-              <div class="sub-metric-val" id="metricOverSplit">—</div>
-              <div class="sub-metric-caption" id="metricOverSplitSub">Identities split</div>
-            </div>
-            <div class="col-divider"></div>
-            <div class="metric-col">
-              <span class="overline-label">Over-merging</span>
-              <div class="sub-metric-val" id="metricOverMerge">—</div>
-              <div class="sub-metric-caption" id="metricOverMergeSub">Clusters merged</div>
-            </div>
-            <div class="col-divider"></div>
-            <div class="metric-col">
-              <span class="overline-label">Inflation</span>
-              <div class="sub-metric-val" id="metricInflation">—</div>
-              <div class="sub-metric-caption">Predicted − true</div>
-            </div>
-          </div>
+          <div class="clusters-stack" id="clustersContainer"></div>
         </div>
-      </div>
-
-      <div class="integrity-section" id="integritySection" style="display: none;">
-        <span class="overline-label">Integrity</span>
-        <div class="integrity-item" id="integrityContactWrap">
-          <span class="integrity-title">Contact accuracy:</span>
-          <span class="integrity-val" id="integrityContact">—</span>
-        </div>
-        <div class="integrity-item" id="integrityA2AWrap">
-          <span class="integrity-title">A2A recall:</span>
-          <span class="integrity-val" id="integrityA2A">—</span>
-        </div>
-        <div class="integrity-item" id="integrityPermWrap">
-          <span class="integrity-title">Perm blocked:</span>
-          <span class="integrity-val" id="integrityPerm">—</span>
-        </div>
-      </div>
-
-      <div class="unresolvable-panel" id="unresolvablePanel" style="display: none;">
-        <div class="unresolvable-title">Isolated messages (Permission policy)</div>
-        <div class="unresolvable-items" id="unresolvableList"></div>
-      </div>
-
-      <div class="clusters-section">
-        <div class="section-title-row">
-          <div class="section-heading">Stitched identity clusters</div>
-          <div class="section-meta" id="clustersMeta">0 clusters · 0.00 ms</div>
-        </div>
-        <div class="clusters-grid" id="clustersContainer"></div>
       </div>
     </div>
   </div>
@@ -1128,6 +989,17 @@
     let currentScenario = null;
     let currentMessages = [];
     let currentPermissionPolicy = null;
+
+    const TRUTH_PALETTE = ['#522C5D', '#E3B8B1', '#29104A', '#845162'];
+
+    function getChannelIcon(chan) {
+      if (!chan) return '✉';
+      const c = chan.toLowerCase();
+      if (c === 'sms') return '💬';
+      if (c === 'voice') return '📞';
+      if (c === 'a2a') return '🤖';
+      return '✉';
+    }
 
     function formatCategory(amb) {
       if (!amb) return 'Standard';
@@ -1225,11 +1097,36 @@
         document.getElementById('activeScenarioSubtitle').textContent =
           `${currentMessages.length} messages · ${trueCount} ground-truth ${trueCount === 1 ? 'identity' : 'identities'}`;
 
+        renderTruthLegend();
         renderScenarioList();
         runStitch();
       } catch (err) {
         console.error('Failed to load scenario', err);
       }
+    }
+
+    function getTruthColorMap() {
+      const uniqueTruths = [...new Set(currentMessages.map(m => m.true_identity_id).filter(Boolean))];
+      const colorMap = {};
+      uniqueTruths.forEach((tid, idx) => {
+        colorMap[tid] = TRUTH_PALETTE[idx % TRUTH_PALETTE.length];
+      });
+      return { uniqueTruths, colorMap };
+    }
+
+    function renderTruthLegend() {
+      const legendEl = document.getElementById('truthLegend');
+      const { uniqueTruths, colorMap } = getTruthColorMap();
+      if (!uniqueTruths.length) {
+        legendEl.innerHTML = '';
+        return;
+      }
+
+      legendEl.innerHTML = '<span style="font-weight:600;">Ground-truth:</span> ' + uniqueTruths.map(tid => {
+        const c = colorMap[tid];
+        const outlineStyle = c === '#E3B8B1' ? 'border: 1px solid #845162;' : '';
+        return `<span class="truth-legend-item"><span class="truth-swatch" style="background-color:${c};${outlineStyle}"></span><span>${escapeHtml(tid)}</span></span>`;
+      }).join(' · ');
     }
 
     async function runStitch() {
@@ -1270,69 +1167,35 @@
         unresList.innerHTML = '';
       }
 
-      const metricsSec = document.getElementById('metricsSection');
-      const integritySec = document.getElementById('integritySection');
-
+      const metricsBand = document.getElementById('metricsBand');
       if (data.metrics) {
-        metricsSec.style.display = 'grid';
+        metricsBand.style.display = 'flex';
         const m = data.metrics;
 
         const f1Pct = (m.f1 * 100).toFixed(1);
         document.getElementById('metricF1').textContent = `${f1Pct}%`;
         document.getElementById('metricF1Bar').style.width = `${Math.min(100, Math.max(0, m.f1 * 100))}%`;
 
-        const precPct = (m.precision * 100).toFixed(1);
-        document.getElementById('metricPrecision').textContent = `${precPct}%`;
-        document.getElementById('metricPrecisionSub').textContent = `${m.tp} TP · ${m.fp} FP`;
-        document.getElementById('metricPrecisionBar').style.width = `${Math.min(100, Math.max(0, m.precision * 100))}%`;
-
-        const recPct = (m.recall * 100).toFixed(1);
-        document.getElementById('metricRecall').textContent = `${recPct}%`;
-        document.getElementById('metricRecallSub').textContent = `${m.tp} TP · ${m.fn} FN`;
-        document.getElementById('metricRecallBar').style.width = `${Math.min(100, Math.max(0, m.recall * 100))}%`;
-
-        const splitPct = (m.over_splitting_rate * 100).toFixed(1);
-        document.getElementById('metricOverSplit').textContent = `${splitPct}%`;
-        document.getElementById('metricOverSplitSub').textContent = `${m.over_split_identities} split`;
-
-        const mergePct = (m.over_merging_rate * 100).toFixed(1);
-        document.getElementById('metricOverMerge').textContent = `${mergePct}%`;
-        document.getElementById('metricOverMergeSub').textContent = `${m.over_merged_clusters} merged`;
+        document.getElementById('metricPrecision').textContent = `${(m.precision * 100).toFixed(1)}%`;
+        document.getElementById('metricRecall').textContent = `${(m.recall * 100).toFixed(1)}%`;
+        document.getElementById('metricOverSplit').textContent = `${(m.over_splitting_rate * 100).toFixed(1)}%`;
+        document.getElementById('metricOverMerge').textContent = `${(m.over_merging_rate * 100).toFixed(1)}%`;
 
         const infSign = m.stitching_inflation >= 0 ? '+' : '';
         document.getElementById('metricInflation').textContent = `${infSign}${m.stitching_inflation.toFixed(2)}`;
 
-        let hasIntegrity = false;
-        if (m.contact_resolution_accuracy !== undefined) {
-          hasIntegrity = true;
-          document.getElementById('integrityContactWrap').style.display = 'flex';
-          document.getElementById('integrityContact').textContent = `${(m.contact_resolution_accuracy * 100).toFixed(1)}%`;
-        } else {
-          document.getElementById('integrityContactWrap').style.display = 'none';
-        }
-
+        const a2aItem = document.getElementById('integrityA2AItem');
         if (m.a2a_recall !== undefined) {
-          hasIntegrity = true;
-          document.getElementById('integrityA2AWrap').style.display = 'flex';
-          document.getElementById('integrityA2A').textContent = `${(m.a2a_recall * 100).toFixed(1)}%`;
+          a2aItem.style.display = 'flex';
+          document.getElementById('metricA2A').textContent = `${(m.a2a_recall * 100).toFixed(1)}%`;
         } else {
-          document.getElementById('integrityA2AWrap').style.display = 'none';
+          a2aItem.style.display = 'none';
         }
-
-        if (m.permission_blocked_precision !== undefined) {
-          hasIntegrity = true;
-          document.getElementById('integrityPermWrap').style.display = 'flex';
-          document.getElementById('integrityPerm').textContent = `${(m.permission_blocked_precision * 100).toFixed(1)}%`;
-        } else {
-          document.getElementById('integrityPermWrap').style.display = 'none';
-        }
-
-        integritySec.style.display = hasIntegrity ? 'flex' : 'none';
       } else {
-        metricsSec.style.display = 'none';
-        integritySec.style.display = 'none';
+        metricsBand.style.display = 'none';
       }
 
+      const { colorMap } = getTruthColorMap();
       const container = document.getElementById('clustersContainer');
       container.innerHTML = '';
 
@@ -1340,59 +1203,62 @@
         const card = document.createElement('div');
         card.className = 'cluster-card';
 
-        const tokenHtml = [];
-        c.inferred_emails.forEach(e => {
-          tokenHtml.push(`<span class="contact-token"><span class="contact-token-icon">✉</span>${escapeHtml(e)}</span>`);
-        });
-        c.inferred_phones.forEach(p => {
-          tokenHtml.push(`<span class="contact-token"><span class="contact-token-icon">☎</span>${escapeHtml(p)}</span>`);
-        });
-        c.inferred_contacts.forEach(cid => {
-          tokenHtml.push(`<span class="contact-token"><span class="contact-token-icon">id:</span>${escapeHtml(cid)}</span>`);
-        });
-
-        const msgsHtml = c.messages.map(m => {
-          const footnotes = [];
-          if (m.contact_id) footnotes.push(`contact: ${m.contact_id}`);
-          if (m.a2a_context && m.a2a_context.task_id) {
-            footnotes.push(`task: ${m.a2a_context.task_id}`);
-            footnotes.push(`${m.a2a_context.agent_handle} → ${m.a2a_context.target_handle}`);
-          }
+        const truthCounts = {};
+        c.messages.forEach(m => {
           if (m.true_identity_id) {
-            footnotes.push(`truth: ${m.true_identity_id}`);
+            truthCounts[m.true_identity_id] = (truthCounts[m.true_identity_id] || 0) + 1;
           }
+        });
 
-          const senderDetails = [];
-          if (m.display_name) senderDetails.push(m.display_name);
-          if (m.sender_email) senderDetails.push(m.sender_email);
-          if (m.sender_phone) senderDetails.push(m.sender_phone);
+        let majorityTruth = null;
+        let maxCount = 0;
+        for (const [tid, count] of Object.entries(truthCounts)) {
+          if (count > maxCount) {
+            maxCount = count;
+            majorityTruth = tid;
+          }
+        }
+
+        const tokenList = [];
+        if (c.inferred_emails && c.inferred_emails.length) tokenList.push(c.inferred_emails[0]);
+        if (c.inferred_phones && c.inferred_phones.length) tokenList.push(c.inferred_phones[0]);
+        if (c.inferred_contacts && c.inferred_contacts.length) tokenList.push(c.inferred_contacts[0]);
+
+        const rowsHtml = c.messages.map(m => {
+          const truthId = m.true_identity_id;
+          const barColor = truthId && colorMap[truthId] ? colorMap[truthId] : 'var(--mauve)';
+          const isWrongMerge = Boolean(truthId && majorityTruth && truthId !== majorityTruth);
+          const icon = getChannelIcon(m.channel);
+          const senderToken = m.sender_email || m.sender_phone || m.display_name || 'Anonymous';
+          const outlineStyle = barColor === '#E3B8B1' ? 'outline: 1px solid #845162;' : '';
 
           return `
-            <div class="msg-row">
-              <div class="msg-row-top">
-                <span class="msg-channel-tag">${escapeHtml(m.channel)}</span>
-                <span class="msg-id-text">${escapeHtml(m.message_id)}</span>
+            <div class="msg-ledger-row ${isWrongMerge ? 'wrong-merge' : ''}">
+              <div class="truth-bar" style="background-color: ${barColor}; ${outlineStyle}"></div>
+              <div class="channel-cell">${icon}</div>
+              <div class="sender-cell">${escapeHtml(senderToken)}</div>
+              <div class="body-cell">
+                ${escapeHtml(m.text)}
+                ${isWrongMerge ? '<span class="wrong-merge-badge">Wrong merge</span>' : ''}
               </div>
-              ${senderDetails.length ? `<div class="msg-sender-line">${escapeHtml(senderDetails.join(' · '))}</div>` : ''}
-              <div class="msg-body-text">${escapeHtml(m.text)}</div>
-              ${footnotes.length ? `<div class="msg-footnote">${footnotes.map(f => `<span>${escapeHtml(f)}</span>`).join('<span>·</span>')}</div>` : ''}
+              <div class="id-cell">${escapeHtml(m.message_id)}</div>
             </div>
           `;
         }).join('');
 
         card.innerHTML = `
-          <div class="cluster-card-header">
-            <div class="cluster-identity-wrap">
+          <div class="cluster-header">
+            <div class="cluster-header-left">
               <div class="cluster-avatar">${c.cluster_id}</div>
-              <div class="cluster-name-block">
-                <div class="cluster-name">${escapeHtml(c.canonical_name)}</div>
-                ${tokenHtml.length ? `<div class="cluster-tokens">${tokenHtml.join('')}</div>` : ''}
+              <div class="cluster-title-wrap">
+                <span class="cluster-name">${escapeHtml(c.canonical_name)}</span>
+                ${tokenList.length ? `<span class="cluster-tokens">· ${escapeHtml(tokenList.join(' · '))}</span>` : ''}
               </div>
             </div>
-            <div class="cluster-msg-count">${c.message_count} ${c.message_count === 1 ? 'message' : 'messages'}</div>
+            <span class="cluster-msg-count">${c.message_count} ${c.message_count === 1 ? 'message' : 'messages'}</span>
           </div>
-          <div class="cluster-messages-body">
-            ${msgsHtml}
+          <div class="ledger-table">
+            ${rowsHtml}
           </div>
         `;
         container.appendChild(card);
