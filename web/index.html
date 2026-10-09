@@ -1872,7 +1872,11 @@
     let activeMainView = 'ledger';
     let currentChannel = 'email';
     let prevMetrics = null;
-    let abortCtrl = null;
+    let scenarioAbortCtrl = null;
+    let stitchAbortCtrl = null;
+    let scenarioCache = new Map();
+    let isInternalNavigating = false;
+    let dimTimer = null;
     let compareCache = {};
     let debounceTimer = null;
     let gKeyPressed = false;
@@ -2028,8 +2032,24 @@
         allScenarios = await res.json();
         renderScenarioTree();
         checkHashRoute();
+        prefetchScenarios();
       } catch (err) {
         console.error(err);
+      }
+    }
+
+    async function prefetchScenarios() {
+      for (const s of allScenarios) {
+        const key = `${s.type}/${s.id}`;
+        if (!scenarioCache.has(key)) {
+          try {
+            const res = await fetch(`/api/scenarios/${s.type}/${s.id}`);
+            if (res.ok) {
+              const data = await res.json();
+              scenarioCache.set(key, data);
+            }
+          } catch (_) {}
+        }
       }
     }
 
@@ -2064,7 +2084,7 @@
           const isAct = currentScenario && currentScenario.scenario_id === s.id;
           row.className = 'scenario-row' + (isAct ? ' active' : '');
           row.id = `scRow_${s.id}`;
-          row.onclick = () => selectScenario(s.type, s.id);
+          row.onclick = () => selectScenario(s.type, s.id, true);
 
           const idx = s.id.replace(/^[a-z]+_0*/i, '') || s.id;
 
@@ -2088,6 +2108,14 @@
       }
     }
 
+    function highlightActiveScenario(id) {
+      document.querySelectorAll('.scenario-row.active').forEach(el => el.classList.remove('active'));
+      const row = document.getElementById(`scRow_${id}`);
+      if (row) {
+        row.classList.add('active');
+      }
+    }
+
     function filterScenarios() {
       renderScenarioTree();
     }
@@ -2099,30 +2127,50 @@
       renderScenarioTree();
       const first = allScenarios.find(s => s.type === type);
       if (first) {
-        selectScenario(first.type, first.id);
+        selectScenario(first.type, first.id, true);
       }
     }
 
-    async function selectScenario(type, id) {
-      if (abortCtrl) {
-        abortCtrl.abort();
+    async function selectScenario(type, id, pushHash = true) {
+      if (currentScenario && currentScenario.type === type && currentScenario.scenario_id === id) {
+        highlightActiveScenario(id);
+        return;
       }
-      abortCtrl = new AbortController();
 
-      try {
-        const res = await fetch(`/api/scenarios/${type}/${id}`, { signal: abortCtrl.signal });
-        if (!res.ok) throw new Error('Scenario load error');
-        currentScenario = await res.json();
-        currentMessages = JSON.parse(JSON.stringify(currentScenario.messages));
-        currentPermissionPolicy = currentScenario.permission_policy;
+      highlightActiveScenario(id);
 
-        updateBreadcrumb();
-        renderScenarioTree();
+      const rail = document.getElementById('leftRail');
+      if (rail && window.innerWidth <= 768) {
+        rail.classList.remove('open');
+      }
+
+      const key = `${type}/${id}`;
+      let data = scenarioCache.get(key);
+
+      if (!data) {
+        if (scenarioAbortCtrl) scenarioAbortCtrl.abort();
+        scenarioAbortCtrl = new AbortController();
+
+        try {
+          const res = await fetch(`/api/scenarios/${type}/${id}`, { signal: scenarioAbortCtrl.signal });
+          if (!res.ok) throw new Error('Scenario load error');
+          data = await res.json();
+          scenarioCache.set(key, data);
+        } catch (err) {
+          if (err.name !== 'AbortError') console.error(err);
+          return;
+        }
+      }
+
+      currentScenario = data;
+      currentMessages = JSON.parse(JSON.stringify(currentScenario.messages));
+      currentPermissionPolicy = currentScenario.permission_policy;
+
+      updateBreadcrumb();
+      if (pushHash) {
         updateHash();
-        runStitch();
-      } catch (err) {
-        if (err.name !== 'AbortError') console.error(err);
       }
+      runStitch();
     }
 
     function updateBreadcrumb() {
@@ -2153,11 +2201,14 @@
       }
       document.getElementById('emptyStateWrap').style.display = 'none';
 
+      clearTimeout(dimTimer);
       const metricsBand = document.getElementById('metricsBand');
-      metricsBand.style.opacity = '0.4';
+      dimTimer = setTimeout(() => {
+        if (metricsBand) metricsBand.style.opacity = '0.6';
+      }, 150);
 
-      if (abortCtrl) abortCtrl.abort();
-      abortCtrl = new AbortController();
+      if (stitchAbortCtrl) stitchAbortCtrl.abort();
+      stitchAbortCtrl = new AbortController();
 
       try {
         const payload = {
@@ -2170,16 +2221,18 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-          signal: abortCtrl.signal
+          signal: stitchAbortCtrl.signal
         });
 
         if (!res.ok) throw new Error('Stitch error');
         const data = await res.json();
-        metricsBand.style.opacity = '1';
+        clearTimeout(dimTimer);
+        if (metricsBand) metricsBand.style.opacity = '1';
         renderResults(data);
       } catch (err) {
         if (err.name !== 'AbortError') {
-          metricsBand.style.opacity = '1';
+          clearTimeout(dimTimer);
+          if (metricsBand) metricsBand.style.opacity = '1';
           console.error(err);
         }
       }
@@ -2640,42 +2693,83 @@
       if (rail) rail.classList.remove('open');
     }
 
-    function navigateToStudio() {
-      window.location.hash = '#studio';
+    function showStudioView() {
       document.getElementById('landingView').style.display = 'none';
       document.getElementById('studioApp').classList.add('active');
+    }
+
+    function showLandingView() {
+      document.getElementById('studioApp').classList.remove('active');
+      document.getElementById('landingView').style.display = 'flex';
+    }
+
+    function navigateToStudio() {
+      showStudioView();
+      if (!window.location.hash.startsWith('#studio')) {
+        isInternalNavigating = true;
+        window.location.hash = '#studio';
+      }
       if (!currentScenario && allScenarios.length) {
-        selectScenario(allScenarios[0].type, allScenarios[0].id);
+        const first = allScenarios.find(s => s.type === currentDataset) || allScenarios[0];
+        if (first) {
+          selectScenario(first.type, first.id, true);
+        }
       }
     }
 
     function navigateToLanding() {
+      showLandingView();
+      isInternalNavigating = true;
       window.location.hash = '#landing';
-      document.getElementById('studioApp').classList.remove('active');
-      document.getElementById('landingView').style.display = 'flex';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function updateHash() {
       if (!currentScenario) return;
-      window.location.hash = `#studio/${currentScenario.type}/${currentScenario.scenario_id}/${currentStrategy}`;
+      const targetHash = `#studio/${currentScenario.type}/${currentScenario.scenario_id}/${currentStrategy}`;
+      if (window.location.hash !== targetHash) {
+        isInternalNavigating = true;
+        window.location.hash = targetHash;
+      }
     }
 
     function checkHashRoute() {
+      if (isInternalNavigating) {
+        isInternalNavigating = false;
+        return;
+      }
       const hash = window.location.hash;
       if (hash.startsWith('#studio')) {
-        navigateToStudio();
+        showStudioView();
         const parts = hash.split('/');
         if (parts.length >= 3) {
           const type = parts[1];
           const scId = parts[2];
           const strat = parts[3];
-          if (strat) {
+          if (strat && strat !== currentStrategy) {
             currentStrategy = strat;
-            document.getElementById('strategySelect').value = strat;
+            const select = document.getElementById('strategySelect');
+            if (select) select.value = strat;
           }
-          selectScenario(type, scId);
+          if (type && scId) {
+            if (currentDataset !== type) {
+              currentDataset = type;
+              document.getElementById('tabDev').classList.toggle('active', type === 'dev');
+              document.getElementById('tabTest').classList.toggle('active', type === 'test');
+              renderScenarioTree();
+            }
+            selectScenario(type, scId, false);
+          }
+        } else {
+          if (!currentScenario && allScenarios.length) {
+            const first = allScenarios.find(s => s.type === currentDataset) || allScenarios[0];
+            if (first) {
+              selectScenario(first.type, first.id, true);
+            }
+          }
         }
+      } else if (hash === '#landing' || !hash) {
+        showLandingView();
       }
     }
 
